@@ -25,6 +25,6 @@ namespace GroupCapstone.Data
 		public DbSet<GroupCapstone.Models.Order> Order { get; set; }
 		public DbSet<GroupCapstone.Models.Product> Products { get; set; }
 		public DbSet<GroupCapstone.Models.OrderDetails> OrderDetails { get; set; }
-		public DbSet<GroupCapstone.Models.OrderOrderDetailProductVM> OrderOrderDetailProductVM { get; set; }
+		
 	}
 }
