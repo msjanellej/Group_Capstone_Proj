@@ -10,10 +10,11 @@ namespace GroupCapstone.Models
     public class Order
     {
         [Key]
-        public int OrderId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name ="Order Date")]
-        public DateTime OrderDate {get; set;}
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? Date {get; set;}
 
         [Display (Name = "Total Price")]
         public int TotalPrice { get; set; }
@@ -30,7 +31,12 @@ namespace GroupCapstone.Models
         public int CustomerId { get; set; }
 		public Customer Customer { get; set; }
 
+        public Order()
+        {
+            IsCompleted = false;
+            IsPicked = false;
 
+        }
 
 
 

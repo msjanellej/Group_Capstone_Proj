@@ -14,19 +14,19 @@ namespace GroupCapstone.Models
 
         public int Quantity { get; set; }
 
-        public int Price { get; set; }
+        public double Price { get; set; }
 
 
         [ForeignKey("Product")]
 
         [Display(Name = "Product Id Number")]
         public int ProductId { get; set; }
-        public Product product { get; set; }
+        public Product Product { get; set; }
 
 
         [ForeignKey("Order")]
         [Display(Name = "Order ID Number")]
         public int OrderId { get; set; }
-        public Order order { get; set; }
+        public Order Order { get; set; }
     }
 }
