@@ -6,9 +6,7 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -51,6 +49,7 @@
             <td>
 
                 <a asp-action="OrderDetailsIndex" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id">Complete Order</a>
 
             </td>
         </tr>

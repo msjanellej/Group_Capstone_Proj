@@ -33,30 +33,62 @@ namespace GroupCapstone.Controllers
             return View(orderList);
         }
 
-        
-        public  IActionResult OrderDetailsIndex(int? id)
+
+        public IActionResult OrderDetailsIndex(int? id)
         {
-            var order = _context.OrderOrderDetailProductVM.Where(o => o.OrderVM.Id == id).ToList();
-            
+            List<OrderDetails> orderDetails = _context.OrderDetails.ToList();
+            List<Product> product = _context.Products.ToList();
+            List<Order> order = _context.Order.ToList();
+            var order_orderDetails_product = from od in orderDetails
+                                             join p in product on od.ProductId equals p.Id into table1
+                                             from p in table1.ToList()
+                                             join o in order on od.OrderId equals o.Id into table2
+                                             from o in table2.ToList()
+                                             select new OrderOrderDetailProductVM
+                                             {
+                                                 OrderDetailsVM = od,
+                                                 ProductVM = p,
+                                                 OrderVM = o
+                                             };
+            var result = order_orderDetails_product.Where(o => o.OrderDetailsVM.OrderId == id).ToList();
+
+            return View(result);
+        }
+        //public ActionResult ConfirmPickedOrder(Order order)
+        //{
+        //    var orderPicked = _context.Order.Single(c => c.Id == order.Id);
+        //    orderPicked.IsPicked = order.IsPicked;
+        //    _context.SaveChanges();
+        //    return View("OrderDetail", orderPicked);
+
+
+        //}
+        //public ActionResult ConfirmOrderComplete(int id)
+        //{
+        //    var orderCompleted = _context.Order.Single(c => c.Id ==id).SingleorDefault();
+        //    orderCompleted.IsCompleted = order.IsCompleted;
+        //    _context.SaveChanges();
+        //    return View("OrderDetail", orderCompleted);
+
+
+        //}
+        public ActionResult ConfirmOrderComplete(int id)
+        {
+            var order = _context.Order.Where(o => o.Id == id).SingleOrDefault();
+            if (order == null)
+            {
+                return NotFound();
+            }
             return View(order);
         }
-        public ActionResult ConfirmPickedOrder(Order order)
-        {
-            var orderPicked = _context.Order.Single(c => c.Id == order.Id);
-            orderPicked.IsPicked = order.IsPicked;
-            _context.SaveChanges();
-            return View("OrderDetail", orderPicked);
-
-
-        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ConfirmOrderComplete(Order order)
         {
-            var orderCompleted = _context.Order.Single(c => c.Id == order.Id);
-            orderCompleted.IsPicked = order.IsPicked;
+            var orderToComplete = _context.Order.Single(o => o.Id == order.Id);
+            orderToComplete.IsCompleted = order.IsCompleted;
             _context.SaveChanges();
-            return View("OrderDetail", orderCompleted);
-
-
+            return View("Index", orderToComplete);
         }
 
 

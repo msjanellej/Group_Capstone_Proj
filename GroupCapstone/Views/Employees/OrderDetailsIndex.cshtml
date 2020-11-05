@@ -7,7 +7,7 @@
 <h1>OrderDetailsIndex</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Index">Back to Orders</a>
 </p>
 <table class="table">
     <thead>
@@ -24,9 +24,9 @@
             <td>@Html.DisplayFor(ModelItem => item.ProductVM.Name)</td>
             <td>@Html.DisplayFor(ModelItem => item.OrderDetailsVM.Quantity)</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id">Complete Order</a>|
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                
             </td>
         </tr>
 }
