@@ -19,11 +19,12 @@ namespace GroupCapstone.Controllers
             _context = context;
         }
 
-        // GET: Customers
-        public async Task<IActionResult> Index()
+       //GET: Customers
+        public ActionResult Index()
         {
-            var applicationDbContext = _context.Customer.Include(c => c.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            
+           
+            return View(_context.Products.ToList());
         }
 
         // GET: Customers/Details/5
