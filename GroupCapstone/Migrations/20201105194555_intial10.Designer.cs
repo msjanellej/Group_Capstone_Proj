@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace GroupCapstone.Data.Migrations
+namespace GroupCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201104211958_initial2")]
-    partial class initial2
+    [Migration("20201105194555_intial10")]
+    partial class intial10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,6 +68,48 @@ namespace GroupCapstone.Data.Migrations
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Customer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "customer1@consume.com",
+                            FirstName = "Bob",
+                            LastName = "McBoberson",
+                            PhoneNumber = "414-555-1234"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "customer1@consume.com",
+                            FirstName = "Tom",
+                            LastName = "Tomson",
+                            PhoneNumber = "123-456-7890"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "",
+                            FirstName = "",
+                            LastName = "",
+                            PhoneNumber = ""
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "",
+                            FirstName = "",
+                            LastName = "",
+                            PhoneNumber = ""
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Email = "",
+                            FirstName = "",
+                            LastName = "",
+                            PhoneNumber = ""
+                        });
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.Employee", b =>
@@ -92,7 +134,7 @@ namespace GroupCapstone.Data.Migrations
 
             modelBuilder.Entity("GroupCapstone.Models.Order", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -100,23 +142,79 @@ namespace GroupCapstone.Data.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsPicked")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Order");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 1,
+                            Date = new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCompleted = false,
+                            IsPicked = true,
+                            TotalPrice = 50
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 2,
+                            Date = new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCompleted = false,
+                            IsPicked = false,
+                            TotalPrice = 20
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 1,
+                            Date = new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCompleted = false,
+                            IsPicked = false,
+                            TotalPrice = 120
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CustomerId = 2,
+                            Date = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCompleted = false,
+                            IsPicked = false,
+                            TotalPrice = 70
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CustomerId = 1,
+                            Date = new DateTime(2020, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCompleted = false,
+                            IsPicked = false,
+                            TotalPrice = 80
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CustomerId = 2,
+                            Date = new DateTime(2020, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsCompleted = true,
+                            IsPicked = true,
+                            TotalPrice = 50
+                        });
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.OrderDetails", b =>
@@ -145,6 +243,56 @@ namespace GroupCapstone.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            OrderId = 1,
+                            Price = 0,
+                            ProductId = 2,
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            Id = 2,
+                            OrderId = 2,
+                            Price = 0,
+                            ProductId = 2,
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            OrderId = 2,
+                            Price = 0,
+                            ProductId = 3,
+                            Quantity = 8
+                        },
+                        new
+                        {
+                            Id = 4,
+                            OrderId = 4,
+                            Price = 0,
+                            ProductId = 4,
+                            Quantity = 18
+                        },
+                        new
+                        {
+                            Id = 5,
+                            OrderId = 4,
+                            Price = 0,
+                            ProductId = 5,
+                            Quantity = 14
+                        },
+                        new
+                        {
+                            Id = 6,
+                            OrderId = 4,
+                            Price = 0,
+                            ProductId = 3,
+                            Quantity = 2
+                        });
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.Product", b =>
@@ -163,8 +311,8 @@ namespace GroupCapstone.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("ProductCategory")
                         .HasColumnType("nvarchar(max)");
@@ -172,6 +320,101 @@ namespace GroupCapstone.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Details = "Wisconsin cheese from Mexico.",
+                            ImageUrl = "",
+                            Name = "Cheese",
+                            Price = 2.0,
+                            ProductCategory = "Dairy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Details = "Harvested by blind monks.",
+                            ImageUrl = "",
+                            Name = "Coffee",
+                            Price = 20.0,
+                            ProductCategory = "Dry goods"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Details = "99% tofu the rest is a secrect.",
+                            ImageUrl = "",
+                            Name = "Vegan Sausages",
+                            Price = 9.0,
+                            ProductCategory = "Vegan"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Details = "No horses were harmed in the making of this product.",
+                            ImageUrl = "",
+                            Name = "Dog food",
+                            Price = 5.0,
+                            ProductCategory = "Pets"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Details = "Please do not drink this product",
+                            ImageUrl = "",
+                            Name = "Windex",
+                            Price = 3.0,
+                            ProductCategory = "Cleaners"
+                        });
+                });
+
+            modelBuilder.Entity("GroupCapstone.Models.StoreInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressCity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressState")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AddressZip")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyVision")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StoreHours")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreInfo_1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -203,22 +446,22 @@ namespace GroupCapstone.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "424fdbc5-9a00-4786-b96c-3fd4c2dfd1cd",
-                            ConcurrencyStamp = "ee9b8897-b145-4cb7-b938-cd03d8ab5412",
+                            Id = "8b9330ce-a79b-4c8b-9cac-cf3169473257",
+                            ConcurrencyStamp = "d3408f98-6aac-458f-a807-892aa54e1161",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "4221122d-d487-4272-ad84-e960859e1b4f",
-                            ConcurrencyStamp = "236b57c8-f4df-4f6a-83cc-985b750b4e93",
+                            Id = "53860593-56d6-41e2-8837-b80df5c5067c",
+                            ConcurrencyStamp = "9f91fbbc-3c23-4a03-9820-e4bccd65b713",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "4511fb0a-f587-45af-8dd8-f815ea2184c5",
-                            ConcurrencyStamp = "32013a5b-742b-46a6-a33d-8e39872e947b",
+                            Id = "a8327741-6dec-47e5-87b6-853e8b3b784e",
+                            ConcurrencyStamp = "e20c7718-9fa4-4749-8f23-730945c909d9",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -425,13 +668,13 @@ namespace GroupCapstone.Data.Migrations
 
             modelBuilder.Entity("GroupCapstone.Models.OrderDetails", b =>
                 {
-                    b.HasOne("GroupCapstone.Models.Order", "order")
+                    b.HasOne("GroupCapstone.Models.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GroupCapstone.Models.Product", "product")
+                    b.HasOne("GroupCapstone.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)

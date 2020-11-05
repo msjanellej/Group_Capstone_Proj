@@ -225,8 +225,8 @@ namespace GroupCapstone.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -247,7 +247,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 1,
                             OrderId = 1,
-                            Price = 0.0,
+                            Price = 0,
                             ProductId = 2,
                             Quantity = 5
                         },
@@ -255,7 +255,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 2,
                             OrderId = 2,
-                            Price = 0.0,
+                            Price = 0,
                             ProductId = 2,
                             Quantity = 1
                         },
@@ -263,7 +263,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 3,
                             OrderId = 2,
-                            Price = 0.0,
+                            Price = 0,
                             ProductId = 3,
                             Quantity = 8
                         },
@@ -271,7 +271,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 4,
                             OrderId = 4,
-                            Price = 0.0,
+                            Price = 0,
                             ProductId = 4,
                             Quantity = 18
                         },
@@ -279,7 +279,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 5,
                             OrderId = 4,
-                            Price = 0.0,
+                            Price = 0,
                             ProductId = 5,
                             Quantity = 14
                         },
@@ -287,7 +287,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 6,
                             OrderId = 4,
-                            Price = 0.0,
+                            Price = 0,
                             ProductId = 3,
                             Quantity = 2
                         });
@@ -367,6 +367,54 @@ namespace GroupCapstone.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GroupCapstone.Models.StoreInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressCity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressState")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AddressZip")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyVision")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StoreHours")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreInfo_1");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -396,22 +444,22 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ff415e91-5764-40cb-b904-d546e8713e2a",
-                            ConcurrencyStamp = "904dedb4-874b-4876-bc14-786b31fb8881",
+                            Id = "8b9330ce-a79b-4c8b-9cac-cf3169473257",
+                            ConcurrencyStamp = "d3408f98-6aac-458f-a807-892aa54e1161",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "fe5e89de-62f9-46a5-a19f-bcbb9e57bfad",
-                            ConcurrencyStamp = "561e0827-4178-49e4-b6e6-1e9d5417e87d",
+                            Id = "53860593-56d6-41e2-8837-b80df5c5067c",
+                            ConcurrencyStamp = "9f91fbbc-3c23-4a03-9820-e4bccd65b713",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "a27ec716-95ea-45f6-8d3f-33a67126c762",
-                            ConcurrencyStamp = "82237900-f44b-42e0-916d-714f8ca43b56",
+                            Id = "a8327741-6dec-47e5-87b6-853e8b3b784e",
+                            ConcurrencyStamp = "e20c7718-9fa4-4749-8f23-730945c909d9",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

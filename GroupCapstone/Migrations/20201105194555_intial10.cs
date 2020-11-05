@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupCapstone.Migrations
 {
-    public partial class intial7 : Migration
+    public partial class intial10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,6 +61,30 @@ namespace GroupCapstone.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StoreInfo_1",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    StreetAddress = table.Column<string>(nullable: true),
+                    AddressCity = table.Column<string>(nullable: true),
+                    AddressState = table.Column<string>(nullable: true),
+                    AddressZip = table.Column<int>(nullable: false),
+                    StoreHours = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    Logo = table.Column<string>(nullable: true),
+                    CompanyVision = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Latitude = table.Column<double>(nullable: false),
+                    Longitude = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StoreInfo_1", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -236,7 +260,7 @@ namespace GroupCapstone.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    OrderId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(nullable: true),
                     TotalPrice = table.Column<int>(nullable: false),
@@ -246,7 +270,7 @@ namespace GroupCapstone.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.OrderId);
+                    table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Order_Customer_CustomerId",
                         column: x => x.CustomerId,
@@ -262,7 +286,7 @@ namespace GroupCapstone.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(nullable: false),
-                    Price = table.Column<double>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(nullable: false)
                 },
@@ -273,7 +297,7 @@ namespace GroupCapstone.Migrations
                         name: "FK_OrderDetails_Order_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Order",
-                        principalColumn: "OrderId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Products_ProductId",
@@ -288,9 +312,9 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "c5a9ca13-2281-4d9c-a85e-fa847b83fefb", "d97accc9-c4b6-4d4c-a790-4782e4c72048", "Admin", "ADMIN" },
-                    { "2527ab5f-d956-48f7-9f95-d657f71c6be9", "62fcc530-840d-4692-ad48-f67512ae3d91", "Employee", "EMPLOYEE" },
-                    { "c09aab66-6497-4035-bd84-3a4119366dff", "3010d3bd-d172-434f-9eb4-3849865aa2a8", "Customer", "CUSTOMER" }
+                    { "8b9330ce-a79b-4c8b-9cac-cf3169473257", "d3408f98-6aac-458f-a807-892aa54e1161", "Admin", "ADMIN" },
+                    { "53860593-56d6-41e2-8837-b80df5c5067c", "9f91fbbc-3c23-4a03-9820-e4bccd65b713", "Employee", "EMPLOYEE" },
+                    { "a8327741-6dec-47e5-87b6-853e8b3b784e", "e20c7718-9fa4-4749-8f23-730945c909d9", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -303,6 +327,44 @@ namespace GroupCapstone.Migrations
                     { 3, "", "", null, "", "" },
                     { 4, "", "", null, "", "" },
                     { 5, "", "", null, "", "" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Details", "ImageUrl", "Name", "Price", "ProductCategory" },
+                values: new object[,]
+                {
+                    { 1, "Wisconsin cheese from Mexico.", "", "Cheese", 2.0, "Dairy" },
+                    { 2, "Harvested by blind monks.", "", "Coffee", 20.0, "Dry goods" },
+                    { 3, "99% tofu the rest is a secrect.", "", "Vegan Sausages", 9.0, "Vegan" },
+                    { 4, "No horses were harmed in the making of this product.", "", "Dog food", 5.0, "Pets" },
+                    { 5, "Please do not drink this product", "", "Windex", 3.0, "Cleaners" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Order",
+                columns: new[] { "Id", "CustomerId", "Date", "IsCompleted", "IsPicked", "TotalPrice" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, 50 },
+                    { 3, 1, new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 120 },
+                    { 5, 1, new DateTime(2020, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 80 },
+                    { 2, 2, new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 20 },
+                    { 4, 2, new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 70 },
+                    { 6, 2, new DateTime(2020, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), true, true, 50 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "OrderDetails",
+                columns: new[] { "Id", "OrderId", "Price", "ProductId", "Quantity" },
+                values: new object[,]
+                {
+                    { 1, 1, 0, 2, 5 },
+                    { 2, 2, 0, 2, 1 },
+                    { 3, 2, 0, 3, 8 },
+                    { 4, 4, 0, 4, 18 },
+                    { 5, 4, 0, 5, 14 },
+                    { 6, 4, 0, 3, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -400,6 +462,9 @@ namespace GroupCapstone.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "StoreInfo_1");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
