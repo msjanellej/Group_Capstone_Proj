@@ -25,7 +25,7 @@
             <td>@Html.DisplayFor(ModelItem => item.OrderDetailsVM.Quantity)</td>
             <td>
                 <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id">Complete Order</a>|
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="ConfirmOrderPicked" asp-route-id="@item.Id">Pick Order</a>
                 
             </td>
         </tr>

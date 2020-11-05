@@ -54,24 +54,7 @@ namespace GroupCapstone.Controllers
 
             return View(result);
         }
-        //public ActionResult ConfirmPickedOrder(Order order)
-        //{
-        //    var orderPicked = _context.Order.Single(c => c.Id == order.Id);
-        //    orderPicked.IsPicked = order.IsPicked;
-        //    _context.SaveChanges();
-        //    return View("OrderDetail", orderPicked);
-
-
-        //}
-        //public ActionResult ConfirmOrderComplete(int id)
-        //{
-        //    var orderCompleted = _context.Order.Single(c => c.Id ==id).SingleorDefault();
-        //    orderCompleted.IsCompleted = order.IsCompleted;
-        //    _context.SaveChanges();
-        //    return View("OrderDetail", orderCompleted);
-
-
-        //}
+       
         public ActionResult ConfirmOrderComplete(int id)
         {
             var order = _context.Order.Where(o => o.Id == id).SingleOrDefault();
@@ -90,8 +73,27 @@ namespace GroupCapstone.Controllers
             _context.SaveChanges();
             return View("Index", orderToComplete);
         }
+        public ActionResult ConfirmOrderPicked(int id)
+        {
+            var order = _context.Order.Where(o => o.Id == id).SingleOrDefault();
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return View(order);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmOrderPicked(Order order)
+        {
+            var orderToPick = _context.Order.Single(o => o.Id == order.Id);
+            orderToPick.IsPicked = order.IsPicked;
+            _context.SaveChanges();
+            return View("Index", orderToPick);
+        }
 
 
-       
+
+
     }
 }
