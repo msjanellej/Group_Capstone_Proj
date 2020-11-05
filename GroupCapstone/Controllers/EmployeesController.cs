@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GroupCapstone.Controllers
 {
-    [Authorize (Roles = "Employee")]
+    //[Authorize (Roles = "Employee")]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,20 +22,27 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: Employees
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Order.Include(e => e.OrderId);
-            return View(await applicationDbContext.ToListAsync());
+            var orders = _context.Order.Where(o => o.IsCompleted == false);
+            List<Order> orderList = new List<Order>();
+            foreach (var item in orders)
+            {
+                orderList.Add(item);
+            }
+            return View(orderList);
         }
 
-        // GET: Employees/Details/5
-        public  IActionResult Details(int? id)
+        
+        public  IActionResult OrderDetailsIndex(int? id)
         {
-            return View();
+            var order = _context.OrderOrderDetailProductVM.Where(o => o.OrderVM.Id == id).ToList();
+            
+            return View(order);
         }
         public ActionResult ConfirmPickedOrder(Order order)
         {
-            var orderPicked = _context.Order.Single(c => c.OrderId == order.OrderId);
+            var orderPicked = _context.Order.Single(c => c.Id == order.Id);
             orderPicked.IsPicked = order.IsPicked;
             _context.SaveChanges();
             return View("OrderDetail", orderPicked);
@@ -44,7 +51,7 @@ namespace GroupCapstone.Controllers
         }
         public ActionResult ConfirmOrderComplete(Order order)
         {
-            var orderCompleted = _context.Order.Single(c => c.OrderId == order.OrderId);
+            var orderCompleted = _context.Order.Single(c => c.Id == order.Id);
             orderCompleted.IsPicked = order.IsPicked;
             _context.SaveChanges();
             return View("OrderDetail", orderCompleted);
@@ -52,116 +59,7 @@ namespace GroupCapstone.Controllers
 
         }
 
-        //// GET: Employees/Create
-        //public IActionResult Create()
-        //{
-        //    ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-        //    return View();
-        //}
 
-        // POST: Employees/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Name,IdentityUserId")] Employee employee)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(employee);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
-        //    return View(employee);
-        //}
-
-        //// GET: Employees/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var employee = await _context.Employee.FindAsync(id);
-        //    if (employee == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
-        //    return View(employee);
-        //}
-
-        // POST: Employees/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Name,IdentityUserId")] Employee employee)
-        //{
-        //    if (id != employee.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(employee);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!EmployeeExists(employee.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
-        //    return View(employee);
-        //}
-
-        // GET: Employees/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var employee = await _context.Employee
-        //        .Include(e => e.IdentityUser)
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (employee == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(employee);
-        //}
-
-        // POST: Employees/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var employee = await _context.Employee.FindAsync(id);
-        //    _context.Employee.Remove(employee);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //private bool EmployeeExists(int id)
-        //{
-        //    return _context.Employee.Any(e => e.Id == id);
-        //}
+       
     }
 }

@@ -10,10 +10,10 @@ namespace GroupCapstone.Models
     public class Order
     {
         [Key]
-        public int OrderId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name ="Order Date")]
-        public DateTime OrderDate {get; set;}
+        public DateTime Date {get; set;}
 
         [Display (Name = "Total Price")]
         public int TotalPrice { get; set; }
