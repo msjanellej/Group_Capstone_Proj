@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupCapstone.Migrations
 {
-    public partial class intial10 : Migration
+    public partial class intial12 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -280,6 +280,33 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ShoppingCart",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Qty = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCart", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCart_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCart_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderDetails",
                 columns: table => new
                 {
@@ -312,9 +339,9 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8b9330ce-a79b-4c8b-9cac-cf3169473257", "d3408f98-6aac-458f-a807-892aa54e1161", "Admin", "ADMIN" },
-                    { "53860593-56d6-41e2-8837-b80df5c5067c", "9f91fbbc-3c23-4a03-9820-e4bccd65b713", "Employee", "EMPLOYEE" },
-                    { "a8327741-6dec-47e5-87b6-853e8b3b784e", "e20c7718-9fa4-4749-8f23-730945c909d9", "Customer", "CUSTOMER" }
+                    { "827c1d72-d9e3-4d88-8ff7-7a6dc5005b6e", "4d4d5e2c-f0a8-4526-b4b8-2dba83096376", "Admin", "ADMIN" },
+                    { "e28bbd85-0460-498c-ba7d-ea87e55aa77e", "ba64b07c-98b8-4dfe-9c6f-2bb41ca2ae35", "Employee", "EMPLOYEE" },
+                    { "8cc7faad-3dc4-4da8-8c57-5ac218b6355f", "3271fd28-cac5-4d63-a541-d2f498c0fd61", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -435,6 +462,16 @@ namespace GroupCapstone.Migrations
                 name: "IX_OrderDetails_ProductId",
                 table: "OrderDetails",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCart_CustomerId",
+                table: "ShoppingCart",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCart_ProductId",
+                table: "ShoppingCart",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -462,6 +499,9 @@ namespace GroupCapstone.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingCart");
 
             migrationBuilder.DropTable(
                 name: "StoreInfo_1");

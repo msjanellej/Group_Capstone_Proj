@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201105194555_intial10")]
-    partial class intial10
+    [Migration("20201106031629_intial12")]
+    partial class intial12
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -369,6 +369,31 @@ namespace GroupCapstone.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GroupCapstone.Models.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCart");
+                });
+
             modelBuilder.Entity("GroupCapstone.Models.StoreInfo", b =>
                 {
                     b.Property<int>("Id")
@@ -446,22 +471,22 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8b9330ce-a79b-4c8b-9cac-cf3169473257",
-                            ConcurrencyStamp = "d3408f98-6aac-458f-a807-892aa54e1161",
+                            Id = "827c1d72-d9e3-4d88-8ff7-7a6dc5005b6e",
+                            ConcurrencyStamp = "4d4d5e2c-f0a8-4526-b4b8-2dba83096376",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "53860593-56d6-41e2-8837-b80df5c5067c",
-                            ConcurrencyStamp = "9f91fbbc-3c23-4a03-9820-e4bccd65b713",
+                            Id = "e28bbd85-0460-498c-ba7d-ea87e55aa77e",
+                            ConcurrencyStamp = "ba64b07c-98b8-4dfe-9c6f-2bb41ca2ae35",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "a8327741-6dec-47e5-87b6-853e8b3b784e",
-                            ConcurrencyStamp = "e20c7718-9fa4-4749-8f23-730945c909d9",
+                            Id = "8cc7faad-3dc4-4da8-8c57-5ac218b6355f",
+                            ConcurrencyStamp = "3271fd28-cac5-4d63-a541-d2f498c0fd61",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -671,6 +696,21 @@ namespace GroupCapstone.Migrations
                     b.HasOne("GroupCapstone.Models.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GroupCapstone.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GroupCapstone.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("GroupCapstone.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
