@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GroupCapstone.Data;
 using GroupCapstone.Models;
+using System.Security.Claims;
 
 namespace GroupCapstone.Controllers
 {
@@ -19,12 +20,57 @@ namespace GroupCapstone.Controllers
             _context = context;
         }
 
-        // GET: Customers
-        public async Task<IActionResult> Index()
+       //GET: Customers
+        public ActionResult Index()
         {
+<<<<<<< HEAD
             var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
+=======
+            var customers = _context.Customer;
+            var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
+            if (customer == null)
+            {
+                return RedirectToAction(nameof(Create));
+
+            }
+
+            return View(_context.Products.ToList());
         }
+
+        // GET: /Customers/AddToCart/5
+        public ActionResult AddToCart(int id)
+        {
+            ShoppingCart cart = new ShoppingCart();
+            var addProduct = _context.Products.Single(p => p.Id == id);
+
+            var customerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customer.Where(c => c.IdentityUserId == customerId).SingleOrDefault();
+            var shoppingCartDB = _context.ShoppingCart.Where(s => s.ProductId == id && s.CustomerId == customer.Id).SingleOrDefault();
+           //If shopping cart doesnt have this product for this customer add a new one else just add 1 to the qty
+            if (shoppingCartDB == null)
+            {
+                cart.ProductId = id;
+                cart.Qty = 1;
+                cart.CustomerId = customer.Id;
+                _context.Add(cart);
+            }
+            else
+            {
+                cart = shoppingCartDB;
+                cart.Qty += 1;
+                _context.Update(cart);
+            }
+            
+         
+            _context.SaveChanges();
+
+            // Go back to the main store page for more shopping
+            return RedirectToAction("Index");
+>>>>>>> Customers
+        }
+
 
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -34,9 +80,29 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
+<<<<<<< HEAD
             var customer = await _context.Customers
                 .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
+=======
+            var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+        // GET: Customers/Info/5
+        public async Task<IActionResult> Info(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customer = await _context.Customer.FirstOrDefaultAsync(m => m.Id == id);
+>>>>>>> Customers
             if (customer == null)
             {
                 return NotFound();
