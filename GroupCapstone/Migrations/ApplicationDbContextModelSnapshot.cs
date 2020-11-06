@@ -36,7 +36,7 @@ namespace GroupCapstone.Migrations
 
                     b.HasIndex("IdentityUserId");
 
-                    b.ToTable("Admin");
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.Customer", b =>
@@ -65,7 +65,7 @@ namespace GroupCapstone.Migrations
 
                     b.HasIndex("IdentityUserId");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
 
                     b.HasData(
                         new
@@ -127,7 +127,7 @@ namespace GroupCapstone.Migrations
 
                     b.HasIndex("IdentityUserId");
 
-                    b.ToTable("Employee");
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.Order", b =>
@@ -140,7 +140,7 @@ namespace GroupCapstone.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsCompleted")
@@ -156,7 +156,7 @@ namespace GroupCapstone.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
 
                     b.HasData(
                         new
@@ -293,6 +293,33 @@ namespace GroupCapstone.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GroupCapstone.Models.OrderOrderDetailProductVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("OrderDetailsVMId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrderVMId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductVMId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderDetailsVMId");
+
+                    b.HasIndex("OrderVMId");
+
+                    b.HasIndex("ProductVMId");
+
+                    b.ToTable("OrderOrderDetailProductVMs");
+                });
+
             modelBuilder.Entity("GroupCapstone.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -389,7 +416,7 @@ namespace GroupCapstone.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingCart");
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.StoreInfo", b =>
@@ -437,55 +464,7 @@ namespace GroupCapstone.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StoreInfo_1");
-                });
-
-            modelBuilder.Entity("GroupCapstone.Models.StoreInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AddressCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressState")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AddressZip")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompanyVision")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Logo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StoreHours")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StoreInfo_1");
+                    b.ToTable("StoreInfo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -517,22 +496,22 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "49de5f91-af3b-42d6-b44e-b846c996e1b2",
-                            ConcurrencyStamp = "ee048427-5404-4857-af8e-f044739a9b4a",
+                            Id = "5571bf80-9e05-402b-bddd-c9be200277f8",
+                            ConcurrencyStamp = "294791df-ec6b-4d5c-80dd-3ab64404c90f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0c78a6c7-8616-4125-bf9b-19438615a2ff",
-                            ConcurrencyStamp = "951e1db6-c705-412b-9025-85abd2f1873e",
+                            Id = "ac529b9f-4f32-419e-8447-2afffcb116c7",
+                            ConcurrencyStamp = "b73a796d-53d1-4bb9-9d0a-78af7bd46df2",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "f86458de-16cc-43b2-96ae-51f9a197c7de",
-                            ConcurrencyStamp = "7c13580f-e4db-4c71-b8b4-92889e87f160",
+                            Id = "f3d8a8a5-caa8-46fd-9c8e-08e6a8307870",
+                            ConcurrencyStamp = "445023a3-806f-49f0-a126-a1461fbf7381",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -750,6 +729,21 @@ namespace GroupCapstone.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GroupCapstone.Models.OrderOrderDetailProductVM", b =>
+                {
+                    b.HasOne("GroupCapstone.Models.OrderDetails", "OrderDetailsVM")
+                        .WithMany()
+                        .HasForeignKey("OrderDetailsVMId");
+
+                    b.HasOne("GroupCapstone.Models.Order", "OrderVM")
+                        .WithMany()
+                        .HasForeignKey("OrderVMId");
+
+                    b.HasOne("GroupCapstone.Models.Product", "ProductVM")
+                        .WithMany()
+                        .HasForeignKey("ProductVMId");
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.ShoppingCart", b =>
