@@ -23,7 +23,7 @@ namespace GroupCapstone.Controllers
        //GET: Customers
         public ActionResult Index()
         {
-            var customers = _context.Customer;
+            var customers = _context.Customers;
             var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
             if (customer == null)
@@ -42,8 +42,8 @@ namespace GroupCapstone.Controllers
             var addProduct = _context.Products.Single(p => p.Id == id);
 
             var customerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var customer = _context.Customer.Where(c => c.IdentityUserId == customerId).SingleOrDefault();
-            var shoppingCartDB = _context.ShoppingCart.Where(s => s.ProductId == id && s.CustomerId == customer.Id).SingleOrDefault();
+            var customer = _context.Customers.Where(c => c.IdentityUserId == customerId).SingleOrDefault();
+            var shoppingCartDB = _context.ShoppingCarts.Where(s => s.ProductId == id && s.CustomerId == customer.Id).SingleOrDefault();
            //If shopping cart doesnt have this product for this customer add a new one else just add 1 to the qty
             if (shoppingCartDB == null)
             {
@@ -91,7 +91,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customer.FirstOrDefaultAsync(m => m.Id == id);
+            var customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
             {
                 return NotFound();
@@ -132,7 +132,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customer.FindAsync(id);
+            var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
@@ -185,7 +185,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customer
+            var customer = await _context.Customers
                 .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
@@ -201,15 +201,15 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customer.FindAsync(id);
-            _context.Customer.Remove(customer);
+            var customer = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CustomerExists(int id)
         {
-            return _context.Customer.Any(e => e.Id == id);
+            return _context.Customers.Any(e => e.Id == id);
         }
     }
 }

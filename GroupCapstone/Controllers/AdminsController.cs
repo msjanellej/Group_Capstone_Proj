@@ -22,7 +22,7 @@ namespace GroupCapstone.Controllers
         // GET: Admins
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Admin.Include(a => a.IdentityUser);
+            var applicationDbContext = _context.Admins.Include(a => a.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin
+            var admin = await _context.Admins
                 .Include(a => a.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (admin == null)
@@ -77,7 +77,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin.FindAsync(id);
+            var admin = await _context.Admins.FindAsync(id);
             if (admin == null)
             {
                 return NotFound();
@@ -130,7 +130,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin
+            var admin = await _context.Admins
                 .Include(a => a.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (admin == null)
@@ -146,15 +146,15 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var admin = await _context.Admin.FindAsync(id);
-            _context.Admin.Remove(admin);
+            var admin = await _context.Admins.FindAsync(id);
+            _context.Admins.Remove(admin);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AdminExists(int id)
         {
-            return _context.Admin.Any(e => e.Id == id);
+            return _context.Admins.Any(e => e.Id == id);
         }
     }
 }

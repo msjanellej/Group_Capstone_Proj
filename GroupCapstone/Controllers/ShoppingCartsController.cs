@@ -23,7 +23,7 @@ namespace GroupCapstone.Controllers
         // GET: ShoppingCart
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ShoppingCart.Include(s => s.Product);
+            var applicationDbContext = _context.ShoppingCarts.Include(s => s.Product);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -38,7 +38,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var shoppingCart = await _context.ShoppingCart
+            var shoppingCart = await _context.ShoppingCarts
                 .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (shoppingCart == null)
@@ -81,7 +81,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var shoppingCart = await _context.ShoppingCart.FindAsync(id);
+            var shoppingCart = await _context.ShoppingCarts.FindAsync(id);
             if (shoppingCart == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var shoppingCart = await _context.ShoppingCart
+            var shoppingCart = await _context.ShoppingCarts
                 .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (shoppingCart == null)
@@ -150,15 +150,15 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var shoppingCart = await _context.ShoppingCart.FindAsync(id);
-            _context.ShoppingCart.Remove(shoppingCart);
+            var shoppingCart = await _context.ShoppingCarts.FindAsync(id);
+            _context.ShoppingCarts.Remove(shoppingCart);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ShoppingCartExists(int id)
         {
-            return _context.ShoppingCart.Any(e => e.Id == id);
+            return _context.ShoppingCarts.Any(e => e.Id == id);
         }
     }
 }
