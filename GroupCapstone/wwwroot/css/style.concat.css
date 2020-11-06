@@ -445,10 +445,10 @@
 }
 
 /*
-0 - 600px:      Phone
+[0 - 600px]:    Phone (default styles apply)
 600 - 900px:    Tablet portrait
 900 - 1200px:   Tablet landscape
-[1200 - 1800] is where our normal styles apply
+1200 - 1800 is where our normal styles apply
 1800px + :      Big desktop
 
 $breakpoint argument choices:
@@ -470,10 +470,10 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 html {
   font-size: 62.5%; }
-  @media only screen and (max-width: 75em) {
+  @media only screen and (min-width: 75em) {
     html {
       font-size: 56.25%; } }
-  @media only screen and (max-width: 56.25em) {
+  @media only screen and (min-width: 56.25em) {
     html {
       font-size: 50%; } }
   @media only screen and (min-width: 112.5em) {
@@ -483,7 +483,7 @@ html {
 body {
   box-sizing: border-box;
   padding: 3rem; }
-  @media only screen and (max-width: 56.25em) {
+  @media only screen and (min-width: 56.25em) {
     body {
       padding: 0; } }
 
@@ -508,7 +508,7 @@ body {
     font-size: 6rem;
     font-weight: 700;
     letter-spacing: 3.5rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (min-width: 37.5em) {
       .heading-primary--main {
         letter-spacing: 1rem;
         font-family: 5rem; } }
@@ -517,7 +517,7 @@ body {
     font-size: 2rem;
     font-weight: 300;
     letter-spacing: 1.75rem; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (min-width: 37.5em) {
       .heading-primary--sub {
         letter-spacing: .5rem; } }
 
@@ -530,10 +530,10 @@ body {
   color: transparent;
   letter-spacing: .2rem;
   transition: all .2s; }
-  @media only screen and (max-width: 56.25em) {
+  @media only screen and (min-width: 56.25em) {
     .heading-secondary {
       font-size: 3rem; } }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (min-width: 37.5em) {
     .heading-secondary {
       font-size: 2.5rem; } }
   .heading-secondary:hover {
@@ -563,13 +563,13 @@ a {
 
 .u-margin-bottom-medium {
   margin-bottom: 4rem !important; }
-  @media only screen and (max-width: 56.25em) {
+  @media only screen and (min-width: 56.25em) {
     .u-margin-bottom-medium {
       margin-bottom: 3rem !important; } }
 
 .u-margin-bottom-big {
   margin-bottom: 8rem !important; }
-  @media only screen and (max-width: 56.25em) {
+  @media only screen and (min-width: 56.25em) {
     .u-margin-bottom-big {
       margin-bottom: 5rem !important; } }
 
@@ -585,7 +585,7 @@ a {
   background-size: cover;
   background-position: top;
   position: relative; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (min-width: 37.5em) {
     .header {
       -webkit-clip-path: padding-box;
       clip-path: padding-box;
