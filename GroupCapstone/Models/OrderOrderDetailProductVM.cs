@@ -11,6 +11,7 @@ namespace GroupCapstone.Models
         [Key]
         public int Id { get; set; }
         public Order OrderVM { get; set; }
+        
         public OrderDetails OrderDetailsVM { get; set; }
         public Product ProductVM { get; set; }
     }

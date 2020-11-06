@@ -26,7 +26,7 @@ namespace GroupCapstone.Controllers
         // GET: Employees
         public IActionResult Index()
         {
-            var orders = _context.Order.Where(o => o.IsCompleted == false);
+            var orders = _context.Orders.Where(o => o.IsCompleted == false);
             List<Order> orderList = new List<Order>();
             foreach (var item in orders)
             {
@@ -70,13 +70,19 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmOrderComplete(Order order)
         {
+<<<<<<< HEAD
             var orderToComplete = _context.Order.Single(o => o.Id == order.Id);
             orderToComplete.IsCompleted = order.IsCompleted;
+=======
+            var orderPicked = _context.Orders.Single(c => c.Id == order.Id);
+            orderPicked.IsPicked = order.IsPicked;
+>>>>>>> master
             _context.SaveChanges();
             return View("Index", orderToComplete);
         }
         public ActionResult ConfirmOrderPicked(int id)
         {
+<<<<<<< HEAD
             var order = _context.Order.Where(o => o.Id == id).SingleOrDefault();
             if (order == null)
             {
@@ -92,6 +98,10 @@ namespace GroupCapstone.Controllers
             var customer = _context.Customer.Where(c => c.Id == order.CustomerId).SingleOrDefault();
             orderToPick.IsPicked = order.IsPicked;
             await SendEmail(customer, order);
+=======
+            var orderCompleted = _context.Orders.Single(c => c.Id == order.Id);
+            orderCompleted.IsPicked = order.IsPicked;
+>>>>>>> master
             _context.SaveChanges();
             return View("Index", orderToPick);
         }

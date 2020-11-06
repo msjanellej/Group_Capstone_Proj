@@ -1,0 +1,45 @@
+.header {
+    height: 100vh;
+    background-image: linear-gradient(
+        to bottom,
+        rgba($color-grey-dark-2, 0.5),
+        rgba($color-grey-dark-3, 0.5)),
+    url(../Assets/img/hero-1-medium.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    
+    @include respond(phone) {
+        -webkit-clip-path: padding-box;
+        clip-path: padding-box;
+        height: 100vh;
+        filter: brightness(0.3);
+    }
+
+    @supports (clip-path: padding-box(0 0)) or (-webkit-clip-path: padding-box(0 0)) {
+        -webkit-clip-path: padding-box;
+        clip-path: padding-box;
+        height: 95vh;
+    }
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+            only screen and (min-width: 125em) {
+        background-image: linear-gradient(
+            to bottom,
+            rgba($color-grey-dark-2, 0.8),
+        rgba($color-grey-dark-3, 0.8)),
+        url(../Assets/img/hero-1-large.jpg);
+    }
+
+    
+    
+    &__text-box {
+        text-align: center;
+        position: absolute;
+        top: 66%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+    }
+}

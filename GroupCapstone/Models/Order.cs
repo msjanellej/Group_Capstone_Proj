@@ -30,7 +30,12 @@ namespace GroupCapstone.Models
         public int CustomerId { get; set; }
 		public Customer Customer { get; set; }
 
+        public Order()
+        {
+            IsCompleted = false;
+            IsPicked = false;
 
+        }
 
 
 
