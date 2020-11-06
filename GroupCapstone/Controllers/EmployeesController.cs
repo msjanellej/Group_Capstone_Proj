@@ -26,13 +26,9 @@ namespace GroupCapstone.Controllers
         // GET: Employees
         public IActionResult Index()
         {
-            var orders = _context.Orders.Where(o => o.IsCompleted == false);
-            List<Order> orderList = new List<Order>();
-            foreach (var item in orders)
-            {
-                orderList.Add(item);
-            }
-            return View(orderList);
+            List<Order>? orders = new List<Order>();
+            orders = _context.Orders.Where(o => o.IsCompleted == false).ToList();
+            return View(orders);
         }
 
 
@@ -97,7 +93,7 @@ namespace GroupCapstone.Controllers
             await SendEmail(customer);
 
             _context.SaveChanges();
-            return View();
+            return View("Index");
         }
 
         public async Task SendEmail(Customer customer)
