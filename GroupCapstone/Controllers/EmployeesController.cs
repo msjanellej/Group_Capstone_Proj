@@ -40,7 +40,7 @@ namespace GroupCapstone.Controllers
         {
             List<OrderDetails> orderDetails = _context.OrderDetails.ToList();
             List<Product> product = _context.Products.ToList();
-            List<Order> order = _context.Order.ToList();
+            List<Order> order = _context.Orders.ToList();
             var order_orderDetails_product = from od in orderDetails
                                              join p in product on od.ProductId equals p.Id into table1
                                              from p in table1.ToList()
@@ -59,7 +59,7 @@ namespace GroupCapstone.Controllers
 
         public ActionResult ConfirmOrderComplete(int id)
         {
-            var order = _context.Order.Where(o => o.Id == id).SingleOrDefault();
+            var order = _context.Orders.Where(o => o.Id == id).SingleOrDefault();
             if (order == null)
             {
                 return NotFound();
@@ -70,20 +70,17 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmOrderComplete(Order order)
         {
-<<<<<<< HEAD
-            var orderToComplete = _context.Order.Single(o => o.Id == order.Id);
+
+            var orderToComplete = _context.Orders.Single(o => o.Id == order.Id);
             orderToComplete.IsCompleted = order.IsCompleted;
-=======
-            var orderPicked = _context.Orders.Single(c => c.Id == order.Id);
-            orderPicked.IsPicked = order.IsPicked;
->>>>>>> master
+
             _context.SaveChanges();
             return View("Index", orderToComplete);
         }
         public ActionResult ConfirmOrderPicked(int id)
         {
-<<<<<<< HEAD
-            var order = _context.Order.Where(o => o.Id == id).SingleOrDefault();
+
+            var order = _context.Orders.Where(o => o.Id == id).SingleOrDefault();
             if (order == null)
             {
                 return NotFound();
@@ -94,19 +91,16 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ConfirmOrderPicked(Order order)
         {
-            var orderToPick = _context.Order.Single(o => o.Id == order.Id);
-            var customer = _context.Customer.Where(c => c.Id == order.CustomerId).SingleOrDefault();
+            var orderToPick = _context.Orders.Single(o => o.Id == order.Id);
+            var customer = _context.Customers.Where(c => c.Id == order.CustomerId).SingleOrDefault();
             orderToPick.IsPicked = order.IsPicked;
-            await SendEmail(customer, order);
-=======
-            var orderCompleted = _context.Orders.Single(c => c.Id == order.Id);
-            orderCompleted.IsPicked = order.IsPicked;
->>>>>>> master
+            await SendEmail(customer);
+
             _context.SaveChanges();
-            return View("Index", orderToPick);
+            return View();
         }
 
-        public async Task SendEmail(Customer customer, Order order)
+        public async Task SendEmail(Customer customer)
         {
             MessageService service = new MessageService();
 
@@ -119,6 +113,7 @@ namespace GroupCapstone.Controllers
                     "Thank you for ordering with us.");
 
         }
+        
     }
 
 

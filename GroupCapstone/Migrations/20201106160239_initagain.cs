@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupCapstone.Migrations
 {
-    public partial class intial12 : Migration
+    public partial class initagain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,7 +64,7 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StoreInfo_1",
+                name: "StoreInfo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -84,7 +84,7 @@ namespace GroupCapstone.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StoreInfo_1", x => x.Id);
+                    table.PrimaryKey("PK_StoreInfo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,7 +109,7 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Admin",
+                name: "Admins",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -119,9 +119,9 @@ namespace GroupCapstone.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Admin", x => x.Id);
+                    table.PrimaryKey("PK_Admins", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Admin_AspNetUsers_IdentityUserId",
+                        name: "FK_Admins_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -214,7 +214,7 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customer",
+                name: "Customers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -227,9 +227,9 @@ namespace GroupCapstone.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customer_AspNetUsers_IdentityUserId",
+                        name: "FK_Customers_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -237,7 +237,7 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employee",
+                name: "Employees",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -247,9 +247,9 @@ namespace GroupCapstone.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employee", x => x.Id);
+                    table.PrimaryKey("PK_Employees", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employee_AspNetUsers_IdentityUserId",
+                        name: "FK_Employees_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -257,12 +257,12 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
                     TotalPrice = table.Column<int>(nullable: false),
                     IsCompleted = table.Column<bool>(nullable: false),
                     IsPicked = table.Column<bool>(nullable: false),
@@ -270,17 +270,17 @@ namespace GroupCapstone.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_Customer_CustomerId",
+                        name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customer",
+                        principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShoppingCart",
+                name: "ShoppingCarts",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -291,15 +291,15 @@ namespace GroupCapstone.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCart", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShoppingCart_Customer_CustomerId",
+                        name: "FK_ShoppingCarts_Customers_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customer",
+                        principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShoppingCart_Products_ProductId",
+                        name: "FK_ShoppingCarts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -321,9 +321,9 @@ namespace GroupCapstone.Migrations
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Order_OrderId",
+                        name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "Order",
+                        principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -334,18 +334,51 @@ namespace GroupCapstone.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OrderOrderDetailProductVMs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderVMId = table.Column<int>(nullable: true),
+                    OrderDetailsVMId = table.Column<int>(nullable: true),
+                    ProductVMId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderOrderDetailProductVMs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderOrderDetailProductVMs_OrderDetails_OrderDetailsVMId",
+                        column: x => x.OrderDetailsVMId,
+                        principalTable: "OrderDetails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderOrderDetailProductVMs_Orders_OrderVMId",
+                        column: x => x.OrderVMId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderOrderDetailProductVMs_Products_ProductVMId",
+                        column: x => x.ProductVMId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "827c1d72-d9e3-4d88-8ff7-7a6dc5005b6e", "4d4d5e2c-f0a8-4526-b4b8-2dba83096376", "Admin", "ADMIN" },
-                    { "e28bbd85-0460-498c-ba7d-ea87e55aa77e", "ba64b07c-98b8-4dfe-9c6f-2bb41ca2ae35", "Employee", "EMPLOYEE" },
-                    { "8cc7faad-3dc4-4da8-8c57-5ac218b6355f", "3271fd28-cac5-4d63-a541-d2f498c0fd61", "Customer", "CUSTOMER" }
+                    { "a96ed66c-73f5-4031-959c-9084a8676217", "a136271b-b511-4902-b473-6e64b8d8ed33", "Admin", "ADMIN" },
+                    { "8288db62-fedd-4713-9b4c-553e13317d2b", "9dc07cd4-c702-4be3-9e3a-a39aa351c26b", "Employee", "EMPLOYEE" },
+                    { "3b59763f-4132-406e-a585-934dd543475d", "56352df5-8898-462a-b1f2-cf1fbb44f082", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
-                table: "Customer",
+                table: "Customers",
                 columns: new[] { "Id", "Email", "FirstName", "IdentityUserId", "LastName", "PhoneNumber" },
                 values: new object[,]
                 {
@@ -369,7 +402,7 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Order",
+                table: "Orders",
                 columns: new[] { "Id", "CustomerId", "Date", "IsCompleted", "IsPicked", "TotalPrice" },
                 values: new object[,]
                 {
@@ -395,8 +428,8 @@ namespace GroupCapstone.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Admin_IdentityUserId",
-                table: "Admin",
+                name: "IX_Admins_IdentityUserId",
+                table: "Admins",
                 column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
@@ -439,19 +472,14 @@ namespace GroupCapstone.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customer_IdentityUserId",
-                table: "Customer",
+                name: "IX_Customers_IdentityUserId",
+                table: "Customers",
                 column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_IdentityUserId",
-                table: "Employee",
+                name: "IX_Employees_IdentityUserId",
+                table: "Employees",
                 column: "IdentityUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Order_CustomerId",
-                table: "Order",
-                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrderId",
@@ -464,20 +492,40 @@ namespace GroupCapstone.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCart_CustomerId",
-                table: "ShoppingCart",
+                name: "IX_OrderOrderDetailProductVMs_OrderDetailsVMId",
+                table: "OrderOrderDetailProductVMs",
+                column: "OrderDetailsVMId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderOrderDetailProductVMs_OrderVMId",
+                table: "OrderOrderDetailProductVMs",
+                column: "OrderVMId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderOrderDetailProductVMs_ProductVMId",
+                table: "OrderOrderDetailProductVMs",
+                column: "ProductVMId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCart_ProductId",
-                table: "ShoppingCart",
+                name: "IX_ShoppingCarts_CustomerId",
+                table: "ShoppingCarts",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_ProductId",
+                table: "ShoppingCarts",
                 column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Admin");
+                name: "Admins");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -495,28 +543,31 @@ namespace GroupCapstone.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "OrderDetails");
+                name: "OrderOrderDetailProductVMs");
 
             migrationBuilder.DropTable(
-                name: "ShoppingCart");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
-                name: "StoreInfo_1");
+                name: "StoreInfo");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Customer");
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
