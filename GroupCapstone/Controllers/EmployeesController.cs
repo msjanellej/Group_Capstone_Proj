@@ -10,10 +10,12 @@ using GroupCapstone.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Cryptography.X509Certificates;
 using GroupCapstone.Services.Messaging;
+using GroupCapstone.Services.Messaging.Email;
+using System.Security.Claims;
 
 namespace GroupCapstone.Controllers
 {
-    //[Authorize (Roles = "Employee")]
+    [Authorize (Roles = "Employee")]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,6 +28,14 @@ namespace GroupCapstone.Controllers
         // GET: Employees
         public IActionResult Index()
         {
+            var employeesOnList = _context.Employees.ToList();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _context.Employees.Where(c => c.IdentityUserId ==
+            userId).SingleOrDefault();
+            if (employee == null)
+            {
+                return RedirectToAction("Create");
+            }
             List<Order>? orders = new List<Order>();
             orders = _context.Orders.Where(o => o.IsCompleted == false).ToList();
             return View(orders);
@@ -93,7 +103,7 @@ namespace GroupCapstone.Controllers
             await SendEmail(customer);
 
             _context.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public async Task SendEmail(Customer customer)
@@ -105,11 +115,35 @@ namespace GroupCapstone.Controllers
                     APIKEYS.emailId,
                     customer.FirstName,
                     customer.Email,
-                    "Your order is ready for pickup",
-                    "Thank you for ordering with us.");
+                    Email.EmailSubject,
+                    Email.EmailBody);
 
         }
-        
+        // GET: EmployeesController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: EmployeesController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Employee employee)
+        {
+            try
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employee.IdentityUserId = userId;
+                _context.Add(employee);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Employees");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
     }
 
 

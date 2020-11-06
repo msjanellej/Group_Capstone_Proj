@@ -45,7 +45,7 @@ namespace GroupCapstone.Services.Messaging
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
                 //need actual google information for gmail below:
                 await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTlsWhenAvailable).ConfigureAwait(true);
-                await client.AuthenticateAsync("group.capstone123@gmail.com", "Test123!").ConfigureAwait(true);
+                await client.AuthenticateAsync(APIKEYS.emailId, APIKEYS.password).ConfigureAwait(true);
 
                 await client.SendAsync(email).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);

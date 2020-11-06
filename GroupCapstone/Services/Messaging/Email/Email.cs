@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace GroupCapstone.Services.Messaging.Email
 {
-    public class Email
+    public static class Email
     {
-        public string emailsubject = "Your order is ready to pick up";
-        public string emailgreeting = "Thank you for placing your order with us!";
-        public string emailclosing = "We will see you soon!";
+        public static string EmailSubject = "Your order is ready to pick up";
+        public static string EmailBody = "<h1>Thank you!</h1><br><div>for placing your order with us!</div>";
+        public static string QrCode = "";
 
     }
 }
