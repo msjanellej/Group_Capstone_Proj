@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GroupCapstone.Data;
 using GroupCapstone.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GroupCapstone.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,9 +25,30 @@ namespace GroupCapstone.Controllers
         // GET: Admins
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Admins.Include(a => a.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+			var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicationDbContext = _context.Admins.Where(a => a.IdentityUserId == userId).FirstOrDefault();
+   //         if(applicationDbContext == null)
+			//{
+   //             return RedirectToAction("Create");
+			//}
+   //         var customers =
+   //         var employees =
+   //         var
+            return View(applicationDbContext.Name);
         }
+
+        //private List<Customer> GetAllCustomers()
+        //{
+        //    List<Customer> customers = new List<Customer>();
+        //    foreach (Customer customer in _context.Customer.Include(c => c.Address))
+        //    {
+        //        if (customer.Address.AddressZip == employee.ZipCodeOfResponsibility && customer.RegularPickupDay == dayOfWeek)
+        //        {
+        //            customers.Add(customer);
+        //        }
+        //    }
+        //    return customers;
+        //}
 
         // GET: Admins/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -53,7 +77,7 @@ namespace GroupCapstone.Controllers
         }
 
         // POST: Admins/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -87,7 +111,7 @@ namespace GroupCapstone.Controllers
         }
 
         // POST: Admins/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

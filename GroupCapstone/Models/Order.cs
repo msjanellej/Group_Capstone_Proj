@@ -13,8 +13,7 @@ namespace GroupCapstone.Models
         public int Id { get; set; }
 
         [Display(Name ="Order Date")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? Date {get; set;}
+        public DateTime Date {get; set;}
 
         [Display (Name = "Total Price")]
         public int TotalPrice { get; set; }
