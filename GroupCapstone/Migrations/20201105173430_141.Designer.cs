@@ -4,14 +4,16 @@ using GroupCapstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GroupCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201105173430_141")]
+    partial class _141
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,8 +227,8 @@ namespace GroupCapstone.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -247,7 +249,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 1,
                             OrderId = 1,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 2,
                             Quantity = 5
                         },
@@ -255,7 +257,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 2,
                             OrderId = 2,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 2,
                             Quantity = 1
                         },
@@ -263,7 +265,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 3,
                             OrderId = 2,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 3,
                             Quantity = 8
                         },
@@ -271,7 +273,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 4,
                             OrderId = 4,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 4,
                             Quantity = 18
                         },
@@ -279,7 +281,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 5,
                             OrderId = 4,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 5,
                             Quantity = 14
                         },
@@ -287,7 +289,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 6,
                             OrderId = 4,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 3,
                             Quantity = 2
                         });
@@ -365,79 +367,6 @@ namespace GroupCapstone.Migrations
                             Price = 3.0,
                             ProductCategory = "Cleaners"
                         });
-                });
-
-            modelBuilder.Entity("GroupCapstone.Models.ShoppingCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Qty")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ShoppingCart");
-                });
-
-            modelBuilder.Entity("GroupCapstone.Models.StoreInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AddressCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressState")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AddressZip")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompanyVision")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Logo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StoreHours")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StoreInfo_1");
                 });
 
             modelBuilder.Entity("GroupCapstone.Models.StoreInfo", b =>
@@ -742,21 +671,6 @@ namespace GroupCapstone.Migrations
                     b.HasOne("GroupCapstone.Models.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GroupCapstone.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("GroupCapstone.Models.ShoppingCart", b =>
-                {
-                    b.HasOne("GroupCapstone.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
