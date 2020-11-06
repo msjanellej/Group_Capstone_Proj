@@ -13,7 +13,7 @@ namespace GroupCapstone.Services.Messaging
             string toName,
             string toEmailAddress,
             string subject,
-            string message,
-            params Attachment[] sttachments);
+            string message);
+           // params Attachment[] sttachments);
     }
 }

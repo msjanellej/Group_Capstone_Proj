@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using MailKit.Security;
 using MimeKit;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,8 @@ namespace GroupCapstone.Services.Messaging
             string toName, 
             string toEmailAddress, 
             string subject, 
-            string message, 
-            params Attachment[] attachments)
+            string message) 
+            //params Attachment[] attachments)
         {
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress(fromDisplayName, fromEmailAddress));
@@ -27,13 +28,13 @@ namespace GroupCapstone.Services.Messaging
             {
                 HtmlBody = message
             };
-            foreach (var attachment in attachments)
-            {
-                using (var stream = await attachment.ContentToStreamAsync())
-                {
-                    body.Attachments.Add(attachment.FileName, stream);
-                }
-            }
+            //foreach (var attachment in attachments)
+            //{
+               // using (var stream = await attachment.ContentToStreamAsync())
+                //{
+                   // body.Attachments.Add(attachment.FileName, stream);
+                //}
+            //}
 
             email.Body = body.ToMessageBody();
 
@@ -43,8 +44,8 @@ namespace GroupCapstone.Services.Messaging
                     (sender, certificate, certChainType, errors) => true;
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
                 //need actual google information for gmail below:
-                await client.ConnectAsync("gmail.com", 587, false).ConfigureAwait(false);
-                await client.AuthenticateAsync(APIKEYS.emailId, APIKEYS.password).ConfigureAwait(false);
+                await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTlsWhenAvailable).ConfigureAwait(true);
+                await client.AuthenticateAsync("group.capstone123@gmail.com", "Test123!").ConfigureAwait(true);
 
                 await client.SendAsync(email).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);

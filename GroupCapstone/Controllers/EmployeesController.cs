@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using GroupCapstone.Data;
 using GroupCapstone.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography.X509Certificates;
+using GroupCapstone.Services.Messaging;
 
 namespace GroupCapstone.Controllers
 {
@@ -54,7 +56,7 @@ namespace GroupCapstone.Controllers
 
             return View(result);
         }
-       
+
         public ActionResult ConfirmOrderComplete(int id)
         {
             var order = _context.Order.Where(o => o.Id == id).SingleOrDefault();
@@ -79,21 +81,39 @@ namespace GroupCapstone.Controllers
             if (order == null)
             {
                 return NotFound();
-            }
-            return View(order);
+            }    
+            return View (order);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmOrderPicked(Order order)
+        public async Task<ActionResult> ConfirmOrderPicked(Order order)
         {
             var orderToPick = _context.Order.Single(o => o.Id == order.Id);
+            var customer = _context.Customer.Where(c => c.Id == order.CustomerId).SingleOrDefault();
             orderToPick.IsPicked = order.IsPicked;
+            await SendEmail(customer, order);
             _context.SaveChanges();
             return View("Index", orderToPick);
         }
 
+        public async Task SendEmail(Customer customer, Order order)
+        {
+            MessageService service = new MessageService();
 
+             await service.SendEmailAsync(
+                    "BusinessName",
+                    APIKEYS.emailId,
+                    customer.FirstName,
+                    customer.Email,
+                    "Your order is ready for pickup",
+                    "Thank you for ordering with us.");
 
-
+        }
     }
+
+
+
+
+
 }
+

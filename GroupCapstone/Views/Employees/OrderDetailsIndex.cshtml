@@ -23,11 +23,7 @@
             <td>@Html.DisplayFor(ModelItem => item.OrderVM.Id)</td>
             <td>@Html.DisplayFor(ModelItem => item.ProductVM.Name)</td>
             <td>@Html.DisplayFor(ModelItem => item.OrderDetailsVM.Quantity)</td>
-            <td>
-                <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id">Complete Order</a>|
-                <a asp-action="ConfirmOrderPicked" asp-route-id="@item.Id">Pick Order</a>
-                
-            </td>
+          
         </tr>
 }
     </tbody>
