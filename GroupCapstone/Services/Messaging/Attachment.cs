@@ -22,7 +22,9 @@ namespace GroupCapstone.Services.Messaging
         public enum AttachmentType
         {
             Json,
-            Text
+            Text, 
+            
+           
         }
         
 
