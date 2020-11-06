@@ -22,7 +22,7 @@ namespace GroupCapstone.Controllers
         // GET: StoreInfoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.StoreInfo_1.ToListAsync());
+            return View(await _context.StoreInfo.ToListAsync());
         }
 
         // GET: StoreInfoes/Details/5
@@ -33,7 +33,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var storeInfo = await _context.StoreInfo_1
+            var storeInfo = await _context.StoreInfo
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (storeInfo == null)
             {
@@ -73,7 +73,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var storeInfo = await _context.StoreInfo_1.FindAsync(id);
+            var storeInfo = await _context.StoreInfo.FindAsync(id);
             if (storeInfo == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var storeInfo = await _context.StoreInfo_1
+            var storeInfo = await _context.StoreInfo
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (storeInfo == null)
             {
@@ -139,15 +139,15 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var storeInfo = await _context.StoreInfo_1.FindAsync(id);
-            _context.StoreInfo_1.Remove(storeInfo);
+            var storeInfo = await _context.StoreInfo.FindAsync(id);
+            _context.StoreInfo.Remove(storeInfo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StoreInfoExists(int id)
         {
-            return _context.StoreInfo_1.Any(e => e.Id == id);
+            return _context.StoreInfo.Any(e => e.Id == id);
         }
     }
 }

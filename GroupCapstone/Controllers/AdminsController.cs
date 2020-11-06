@@ -23,32 +23,32 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: Admins
-        public Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
 			var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var applicationDbContext = _context.Admin.Where(a => a.IdentityUserId == userId).FirstOrDefault();
-            if(applicationDbContext == null)
-			{
-                return RedirectToAction("Create");
-			}
-            var customers =
-            var employees =
-            var 
-            return View(applicationDbContext.ToList());
+            var applicationDbContext = _context.Admins.Where(a => a.IdentityUserId == userId).FirstOrDefault();
+   //         if(applicationDbContext == null)
+			//{
+   //             return RedirectToAction("Create");
+			//}
+   //         var customers =
+   //         var employees =
+   //         var
+            return View(applicationDbContext.Name);
         }
 
-        private List<Customer> GetAllCustomers()
-        {
-            List<Customer> customers = new List<Customer>();
-            foreach (Customer customer in _context.Customer.Include(c => c.Address))
-            {
-                if (customer.Address.AddressZip == employee.ZipCodeOfResponsibility && customer.RegularPickupDay == dayOfWeek)
-                {
-                    customers.Add(customer);
-                }
-            }
-            return customers;
-        }
+        //private List<Customer> GetAllCustomers()
+        //{
+        //    List<Customer> customers = new List<Customer>();
+        //    foreach (Customer customer in _context.Customer.Include(c => c.Address))
+        //    {
+        //        if (customer.Address.AddressZip == employee.ZipCodeOfResponsibility && customer.RegularPickupDay == dayOfWeek)
+        //        {
+        //            customers.Add(customer);
+        //        }
+        //    }
+        //    return customers;
+        //}
 
         // GET: Admins/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -58,7 +58,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin
+            var admin = await _context.Admins
                 .Include(a => a.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (admin == null)
@@ -101,7 +101,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin.FindAsync(id);
+            var admin = await _context.Admins.FindAsync(id);
             if (admin == null)
             {
                 return NotFound();
@@ -154,7 +154,7 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin
+            var admin = await _context.Admins
                 .Include(a => a.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (admin == null)
@@ -170,15 +170,15 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var admin = await _context.Admin.FindAsync(id);
-            _context.Admin.Remove(admin);
+            var admin = await _context.Admins.FindAsync(id);
+            _context.Admins.Remove(admin);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AdminExists(int id)
         {
-            return _context.Admin.Any(e => e.Id == id);
+            return _context.Admins.Any(e => e.Id == id);
         }
     }
 }
