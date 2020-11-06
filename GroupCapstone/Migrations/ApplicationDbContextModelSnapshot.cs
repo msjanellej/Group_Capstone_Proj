@@ -496,22 +496,37 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
+<<<<<<< HEAD
                             Id = "5571bf80-9e05-402b-bddd-c9be200277f8",
                             ConcurrencyStamp = "294791df-ec6b-4d5c-80dd-3ab64404c90f",
+=======
+                            Id = "a96ed66c-73f5-4031-959c-9084a8676217",
+                            ConcurrencyStamp = "a136271b-b511-4902-b473-6e64b8d8ed33",
+>>>>>>> EmployeeControllers
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = "ac529b9f-4f32-419e-8447-2afffcb116c7",
                             ConcurrencyStamp = "b73a796d-53d1-4bb9-9d0a-78af7bd46df2",
+=======
+                            Id = "8288db62-fedd-4713-9b4c-553e13317d2b",
+                            ConcurrencyStamp = "9dc07cd4-c702-4be3-9e3a-a39aa351c26b",
+>>>>>>> EmployeeControllers
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = "f3d8a8a5-caa8-46fd-9c8e-08e6a8307870",
                             ConcurrencyStamp = "445023a3-806f-49f0-a126-a1461fbf7381",
+=======
+                            Id = "3b59763f-4132-406e-a585-934dd543475d",
+                            ConcurrencyStamp = "56352df5-8898-462a-b1f2-cf1fbb44f082",
+>>>>>>> EmployeeControllers
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

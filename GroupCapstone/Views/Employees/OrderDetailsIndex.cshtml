@@ -1,0 +1,30 @@
+﻿@model IEnumerable<GroupCapstone.Models.OrderOrderDetailProductVM>
+
+@{
+    ViewData["Title"] = "OrderDetailsIndex";
+}
+
+<h1>OrderDetailsIndex</h1>
+
+<p>
+    <a asp-action="Index">Back to Orders</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(Model => Model.OrderVM.Id)</th>
+            <th>@Html.DisplayNameFor(Model => Model.ProductVM.Name)</th>
+            <th>@Html.DisplayNameFor(Model => Model.OrderDetailsVM.Quantity)</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(ModelItem => item.OrderVM.Id)</td>
+            <td>@Html.DisplayFor(ModelItem => item.ProductVM.Name)</td>
+            <td>@Html.DisplayFor(ModelItem => item.OrderDetailsVM.Quantity)</td>
+          
+        </tr>
+}
+    </tbody>
+</table>
