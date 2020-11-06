@@ -60,14 +60,16 @@ namespace GroupCapstone.Data
 		);
 
 		}
-		public DbSet<GroupCapstone.Models.Customer> Customer { get; set; }
-		public DbSet<GroupCapstone.Models.Employee> Employee { get; set; }
-		public DbSet<GroupCapstone.Models.Admin> Admin { get; set; }
-		public DbSet<GroupCapstone.Models.Order> Order { get; set; }
-		public DbSet<GroupCapstone.Models.Product> Products { get; set; }
-		public DbSet<GroupCapstone.Models.OrderDetails> OrderDetails { get; set; }
-		public DbSet<GroupCapstone.Models.OrderDetails> StoreInfo { get; set; }
-		public DbSet<GroupCapstone.Models.StoreInfo> StoreInfo_1 { get; set; }
+		public DbSet<Customer> Customer { get; set; }
+		public DbSet<Employee> Employee { get; set; }
+		public DbSet<Admin> Admin { get; set; }
+		public DbSet<Order> Order { get; set; }
+		public DbSet<Product> Products { get; set; }
+		public DbSet<OrderDetails> OrderDetails { get; set; }
+		public DbSet<OrderDetails> StoreInfo { get; set; }
+		public DbSet<StoreInfo> StoreInfo_1 { get; set; }
+
+		public DbSet<ShoppingCart> ShoppingCart { get; set; }
 
 	}
 }
