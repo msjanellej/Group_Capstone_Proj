@@ -14,6 +14,6 @@ namespace GroupCapstone.Services.Messaging
             string toEmailAddress,
             string subject,
             string message);
-           // params Attachment[] sttachments);
+           // params Attachment[] attachments);
     }
 }

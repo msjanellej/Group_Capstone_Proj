@@ -12,6 +12,8 @@ using System.Security.Cryptography.X509Certificates;
 using GroupCapstone.Services.Messaging;
 using GroupCapstone.Services.Messaging.Email;
 using System.Security.Claims;
+using IronBarCode;
+using System.Drawing;
 
 namespace GroupCapstone.Controllers
 {
@@ -100,17 +102,18 @@ namespace GroupCapstone.Controllers
             var orderToPick = _context.Orders.Single(o => o.Id == order.Id);
             var customer = _context.Customers.Where(c => c.Id == order.CustomerId).SingleOrDefault();
             orderToPick.IsPicked = order.IsPicked;
-            await SendEmail(customer);
+            
+            await SendEmail(customer, order);
 
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public async Task SendEmail(Customer customer)
+        public async Task SendEmail(Customer customer, Order order)
         {
             MessageService service = new MessageService();
-
-             await service.SendEmailAsync(
+            Email.GetQRCode(order);
+            await service.SendEmailAsync(
                     "BusinessName",
                     APIKEYS.emailId,
                     customer.FirstName,
@@ -143,6 +146,11 @@ namespace GroupCapstone.Controllers
                 return View();
             }
         }
+        //public GeneratedBarcode GetQRCode(Order order)
+        //{
+        //    var qrCode = QRCodeWriter.CreateQrCode(order.Id.ToString(), 500, QRCodeWriter.QrErrorCorrectionLevel.Medium).SaveAsPng("MyQR.png");
+        //    return qrCode;
+        //}
 
     }
 
