@@ -111,6 +111,12 @@ namespace GroupCapstone.Controllers
 
         public async Task SendEmail(Customer customer, Order order)
         {
+
+            string emailBody = "<h6>Thank you!</h6><br><div>for placing your order with us!<br>" +
+            "Please show the QR code to the employee when you arrive for your pick up. Thank you.</div>" +
+            "<div> Your total price is " + order.Id.ToString() + " And your total is " + order.TotalPrice.ToString() + "</div>" +
+            "<div>" + Email.qrCode + "</div>";
+
             MessageService service = new MessageService();
             Email.GetQRCode(order);
             await service.SendEmailAsync(
@@ -118,8 +124,8 @@ namespace GroupCapstone.Controllers
                     APIKEYS.emailId,
                     customer.FirstName,
                     customer.Email,
-                    Email.EmailSubject,
-                    Email.EmailBody);
+                    "Your order is Ready to Pick Up",
+                    emailBody);
 
         }
         // GET: EmployeesController/Create
