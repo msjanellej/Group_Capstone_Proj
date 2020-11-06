@@ -24,7 +24,7 @@ namespace GroupCapstone.Controllers
         // GET: Employees
         public IActionResult Index()
         {
-            var orders = _context.Order.Where(o => o.IsCompleted == false);
+            var orders = _context.Orders.Where(o => o.IsCompleted == false);
             List<Order> orderList = new List<Order>();
             foreach (var item in orders)
             {
@@ -42,7 +42,7 @@ namespace GroupCapstone.Controllers
         }
         public ActionResult ConfirmPickedOrder(Order order)
         {
-            var orderPicked = _context.Order.Single(c => c.Id == order.Id);
+            var orderPicked = _context.Orders.Single(c => c.Id == order.Id);
             orderPicked.IsPicked = order.IsPicked;
             _context.SaveChanges();
             return View("OrderDetail", orderPicked);
@@ -51,7 +51,7 @@ namespace GroupCapstone.Controllers
         }
         public ActionResult ConfirmOrderComplete(Order order)
         {
-            var orderCompleted = _context.Order.Single(c => c.Id == order.Id);
+            var orderCompleted = _context.Orders.Single(c => c.Id == order.Id);
             orderCompleted.IsPicked = order.IsPicked;
             _context.SaveChanges();
             return View("OrderDetail", orderCompleted);

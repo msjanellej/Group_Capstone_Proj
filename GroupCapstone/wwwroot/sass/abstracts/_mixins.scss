@@ -20,10 +20,10 @@
 
 // MEDIA QUERY MANAGER
 /*
-0 - 600px:      Phone
+[0 - 600px]:    Phone (default styles apply)
 600 - 900px:    Tablet portrait
 900 - 1200px:   Tablet landscape
-[1200 - 1800] is where our normal styles apply
+1200 - 1800 is where our normal styles apply
 1800px + :      Big desktop
 
 $breakpoint argument choices:
