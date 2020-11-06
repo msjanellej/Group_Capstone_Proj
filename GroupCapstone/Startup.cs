@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using GroupCapstone.ActionFilters;
+using GroupCapstone.Services.Messaging;
 
 namespace GroupCapstone
 {
@@ -44,6 +45,7 @@ namespace GroupCapstone
 			});
 			services.AddControllersWithViews();
 			services.AddRazorPages();
+			services.AddScoped<IMessageService, MessageService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
