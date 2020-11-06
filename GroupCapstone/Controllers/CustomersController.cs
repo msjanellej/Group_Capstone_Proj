@@ -23,10 +23,6 @@ namespace GroupCapstone.Controllers
        //GET: Customers
         public ActionResult Index()
         {
-<<<<<<< HEAD
-            var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
-=======
             var customers = _context.Customer;
             var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
@@ -68,7 +64,6 @@ namespace GroupCapstone.Controllers
 
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
->>>>>>> Customers
         }
 
 
@@ -80,11 +75,6 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
 
-<<<<<<< HEAD
-            var customer = await _context.Customers
-                .Include(c => c.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
-=======
             var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -102,7 +92,6 @@ namespace GroupCapstone.Controllers
             }
 
             var customer = await _context.Customer.FirstOrDefaultAsync(m => m.Id == id);
->>>>>>> Customers
             if (customer == null)
             {
                 return NotFound();
