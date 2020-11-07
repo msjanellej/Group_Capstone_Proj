@@ -26,11 +26,13 @@ namespace GroupCapstone.Controllers
             var customers = _context.Customers;
             var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
+           
             if (customer == null)
             {
                 return RedirectToAction(nameof(Create));
 
             }
+            CartSummary(customer.Id);
 
             return View(_context.Products.ToList());
         }
@@ -47,6 +49,10 @@ namespace GroupCapstone.Controllers
             if (shoppingCartDB == null)
             {
                 cart.ProductId = id;
+                cart.Name = addProduct.Name;
+                cart.Price = addProduct.Price;
+                cart.ImageUrl = addProduct.ImageUrl;
+                cart.ProductCategory = addProduct.ProductCategory;
                 cart.Qty = 1;
                 cart.CustomerId = customer.Id;
                 _context.Add(cart);
@@ -216,10 +222,38 @@ namespace GroupCapstone.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+       
+        public ActionResult CartSummary(int id)
+        {
+            ViewData["CartCount"] = GetCount(id);
+            ViewData["CartTotalCost"] = GetTotalCost(id);
 
+            return PartialView("CartSummary");
+        }
         private bool CustomerExists(int id)
         {
             return _context.Customers.Any(e => e.Id == id);
+        }
+        public int GetCount(int id)
+        {
+            // Get the count of each item in the cart and sum them up
+            int? count = (from cartItems in _context.ShoppingCarts
+                          where cartItems.CustomerId == id
+                          select (int?)cartItems.Qty).Sum();
+
+            // Return 0 if all entries are null
+            return count ?? 0;
+        }
+        public int GetTotalCost(int id)
+        {
+            var product = _context.Products;
+            // Get the count of each item in the cart and sum them up
+            int? total = _context.ShoppingCarts.Where(s => s.CustomerId == id).Select(x=>x.Qty * x.Price).Sum();
+            //@(((decimal)@ViewData["CartTotalCost"].ToString("C2"))
+
+
+            // Return 0 if all entries are null
+            return total ?? 0;
         }
     }
 }
