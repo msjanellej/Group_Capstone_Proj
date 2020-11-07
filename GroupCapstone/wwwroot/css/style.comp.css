@@ -2,13 +2,13 @@
 [0 - 600px]:    Phone (default styles apply)
 600 - 900px:    Tablet portrait
 900 - 1200px:   Tablet landscape
-1200 - 1800 is where our normal styles apply
+1200 - 1800     Average Laptop
 1800px + :      Big desktop
 
 $breakpoint argument choices:
-- phone
 - tab-port
 - tab-land
+- laptop
 - big-desktop
 
 ORDER: Base + typography > general layout + grid > page layout > components
@@ -24,22 +24,18 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 html {
   font-size: 62.5%; }
-  @media only screen and (min-width: 75em) {
-    html {
-      font-size: 56.25%; } }
-  @media only screen and (min-width: 56.25em) {
+  @media only screen and (min-width: 37.5em) {
     html {
       font-size: 50%; } }
-  @media only screen and (min-width: 112.5em) {
+  @media only screen and (min-width: 56.25em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (min-width: 0) {
     html {
       font-size: 75%; } }
 
 body {
-  box-sizing: border-box;
-  padding: 3rem; }
-  @media only screen and (min-width: 56.25em) {
-    body {
-      padding: 0; } }
+  box-sizing: border-box; }
 
 ::selection {
   background-color: #007bcc;
@@ -59,37 +55,34 @@ body {
   margin-bottom: 6rem; }
   .heading-primary--main {
     display: block;
-    font-size: 6rem;
     font-weight: 700;
-    letter-spacing: 3.5rem; }
-    @media only screen and (min-width: 37.5em) {
+    font-size: 3.8rem; }
+    @media only screen and (min-width: 75em) {
       .heading-primary--main {
-        letter-spacing: 1rem;
-        font-family: 5rem; } }
+        letter-spacing: 3.5rem;
+        font-size: 6rem; } }
   .heading-primary--sub {
     display: block;
     font-size: 2rem;
     font-weight: 300;
-    letter-spacing: 1.75rem; }
-    @media only screen and (min-width: 37.5em) {
+    letter-spacing: .5rem; }
+    @media only screen and (min-width: 75em) {
       .heading-primary--sub {
-        letter-spacing: .5rem; } }
+        letter-spacing: 1.75rem; } }
 
 .heading-secondary {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: .2rem;
-  transition: all .2s; }
-  @media only screen and (min-width: 56.25em) {
-    .heading-secondary {
-      font-size: 3rem; } }
+  transition: all .2s;
+  font-size: 2.5rem; }
   @media only screen and (min-width: 37.5em) {
     .heading-secondary {
-      font-size: 2.5rem; } }
+      font-size: 3rem; } }
   .heading-secondary:hover {
     transform: scale(1.1);
     text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
@@ -105,10 +98,6 @@ body {
   .paragraph:not(:last-child) {
     margin-bottom: 3rem; }
 
-a {
-  text-decoration: none;
-  color: #a2a2a2; }
-
 .u-center-text {
   text-align: center !important; }
 
@@ -117,13 +106,13 @@ a {
 
 .u-margin-bottom-medium {
   margin-bottom: 4rem !important; }
-  @media only screen and (min-width: 56.25em) {
+  @media only screen and (min-width: 37.5em) {
     .u-margin-bottom-medium {
       margin-bottom: 3rem !important; } }
 
 .u-margin-bottom-big {
   margin-bottom: 8rem !important; }
-  @media only screen and (min-width: 56.25em) {
+  @media only screen and (min-width: 37.5em) {
     .u-margin-bottom-big {
       margin-bottom: 5rem !important; } }
 
@@ -133,29 +122,16 @@ a {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
-.header {
+.landing {
   height: 100vh;
+  background-color: black;
   background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0.5), rgba(51, 51, 51, 0.5)), url(../Assets/img/hero-1-medium.jpg);
   background-size: cover;
   background-position: top;
   position: relative; }
-  @media only screen and (min-width: 37.5em) {
-    .header {
-      -webkit-clip-path: padding-box;
-      clip-path: padding-box;
-      height: 100vh;
-      filter: brightness(0.3); } }
-  @supports (clip-path: padding-box(0 0)) or (-webkit-clip-path: padding-box(0 0)) {
-    .header {
-      -webkit-clip-path: padding-box;
-      clip-path: padding-box;
-      height: 95vh; } }
-  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 125em) {
-    .header {
-      background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0.8), rgba(51, 51, 51, 0.8)), url(../Assets/img/hero-1-large.jpg); } }
-  .header__text-box {
+  .landing__text-box {
     text-align: center;
-    position: absolute;
+    position: relative;
     top: 66%;
     left: 50%;
     transform: translate(-50%, -50%); }

@@ -1,0 +1,20 @@
+.landing{
+  height: 100vh;
+  background-color: black;
+    background-image: linear-gradient(
+        to bottom,
+        rgba($color-grey-dark-2, 0.5),
+        rgba($color-grey-dark-3, 0.5)),
+    url(../Assets/img/hero-1-medium.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  &__text-box {
+    text-align: center;
+    position: relative;
+    top: 66%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
