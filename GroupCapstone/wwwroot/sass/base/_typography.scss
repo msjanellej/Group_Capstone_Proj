@@ -20,7 +20,10 @@ body {
         display: block;
         font-weight: 700;
         font-size: 3.8rem;
-    
+
+        animation-name: moveInBottom;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
 
         @include respond(laptop) {
             letter-spacing: 3.5rem;
@@ -35,6 +38,8 @@ body {
         font-size: 2rem;
         font-weight: 300;
         letter-spacing: .5rem;
+
+        animation: moveInTop 1s ease-out;
 
         @include respond(laptop){
             letter-spacing: 1.75rem;
