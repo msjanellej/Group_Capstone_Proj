@@ -3,8 +3,9 @@
 @{
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
-}
 
+}
+<script src="https://js.stripe.com/v3/"></script>
 <h1>Cart</h1>
 
 <p>
@@ -70,6 +71,11 @@
 }
     </tbody>
 </table>
+<a asp-action="CheckOut" asp-route-id=@ViewData["cusomerId"]>CheckOut</a>
+
+    <button id="checkout-button">Checkout</button>
+
+
 <script>
    var i;
             for (i = 0; i < ViewBag.cart.length; i++)
