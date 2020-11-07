@@ -28,12 +28,13 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Cart">Cart <span id="cart_count">3</span></a>
-
+                           
+                       
                         </li>
+                       
                     </ul>
                     <ul class="navbar-right">
-                        <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a></li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Cart"><span id="cart_count">Cart line (@ViewData["CartCount"])</span> <span>$@ViewData["CartTotalCost"]</span></a>
                     </ul> 
                 </div>
             </div>
