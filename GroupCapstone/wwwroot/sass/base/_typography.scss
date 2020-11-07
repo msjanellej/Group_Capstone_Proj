@@ -24,6 +24,10 @@ body {
         animation-name: moveInBottom;
         animation-duration: 1s;
         animation-timing-function: ease-out;
+        -webkit-text-fill-color: white;
+        -webkit-text-stroke-color: white;
+        // -webkit-text-stroke-width: 1px;
+    
 
         @include respond(laptop) {
             letter-spacing: 3.5rem;

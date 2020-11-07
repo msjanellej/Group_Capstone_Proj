@@ -549,7 +549,9 @@ body {
     font-size: 3.8rem;
     animation-name: moveInBottom;
     animation-duration: 1s;
-    animation-timing-function: ease-out; }
+    animation-timing-function: ease-out;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-color: white; }
     @media only screen and (min-width: 75em) {
       .heading-primary--main {
         letter-spacing: 3.5rem;
@@ -616,6 +618,9 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
+.logo {
+  fill: orangered; }
+
 .landing {
   height: 100vh;
   background-color: black;
@@ -623,6 +628,10 @@ body {
   background-size: cover;
   background-position: top;
   position: relative; }
+  .landing__logo-box {
+    height: fit-content; }
+  .landing__logo {
+    height: 4rem; }
   .landing__text-box {
     text-align: center;
     position: relative;
