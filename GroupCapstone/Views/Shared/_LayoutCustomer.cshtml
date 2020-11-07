@@ -28,14 +28,14 @@
 
                         </li>
                         <li class="nav-item">
-                           
-                       
+
+
                         </li>
-                       
+
                     </ul>
                     <ul class="navbar-right">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Cart"><span id="cart_count">Cart line (@ViewData["CartCount"])</span> <span>$@ViewData["CartTotalCost"]</span></a>
-                    </ul> 
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -54,7 +54,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
+
     @RenderSection("Scripts", required: false)
+    @RenderSection("Stripe", required: false)
+   
 </body>
 </html>

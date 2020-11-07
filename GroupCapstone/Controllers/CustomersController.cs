@@ -79,6 +79,7 @@ namespace GroupCapstone.Controllers
             var customer = _context.Customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
 
             var applicationDbContext = _context.ShoppingCarts.Where(s => s.CustomerId == customer.Id);
+            ViewData["cusomerId"] = customer.Id;
             ViewBag.cart = applicationDbContext;
             return View(applicationDbContext.ToList());
         }
@@ -236,7 +237,7 @@ namespace GroupCapstone.Controllers
             var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
             ViewData["CartCount"] = GetCount(customer.Id);
             ViewData["CartTotalCost"] = GetTotalCost(customer.Id);
-
+            ViewData["CustomerEmail"] = customer.Email;
             return PartialView("CartSummary");
         }
         private bool CustomerExists(int id)
@@ -264,37 +265,43 @@ namespace GroupCapstone.Controllers
             // Return 0 if all entries are null
             return total ?? 0;
         }
-        public async Task<IActionResult> MakePayment(int? id)
+   
+        public IActionResult Checkout(int? id)
         {
-            
+            CartSummary();
+
             return View();
         }
 
+        // POST: Customers/Create
+        
         [HttpPost]
-        public async Task<IActionResult> MakePayment(int payment)
-        {
-            StripeConfiguration.ApiKey = "";
-
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout()
+        { 
+            CartSummary();
+            var totalCost = ViewData["CartTotalCost"];
+            var Email = ViewData["CustomerEmail"];
+            StripeConfiguration.ApiKey = APIKEYS.StripeApiKey;
+           
             // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
             var options = new ChargeCreateOptions
             {
-                Amount = (long)payment * 100,
+                Amount = (int)totalCost,
                 Currency = "usd",
                 Source = "tok_visa",
-                Description = "My First Test Charge (created for API docs)",
+                Description = "Order from app. Custom text could be brought in here",
+                ReceiptEmail = "miketreml@mac.com" //Email replace hard code after testing.
+
             };
             var service = new ChargeService();
             service.Create(options);
 
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            // var loggedInCustomer = _context.Customers.Include(c => c.Address).FirstOrDefault(c => c.IdentityUserId == userId); - DIFFERENCE?
-            //var loggedInCustomer = _context.Customers.Include(c => c.Address).Where(c => c.IdentityUserId == userId).FirstOrDefault();
-            //loggedInCustomer.AccountBalance -= payment;
-            //_context.Update(loggedInCustomer);
+           
+           
             //await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
-    
-}
+    }
 }
