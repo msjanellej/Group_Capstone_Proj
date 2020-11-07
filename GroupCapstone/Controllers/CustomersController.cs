@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupCapstone.Data;
 using GroupCapstone.Models;
 using System.Security.Claims;
+using Stripe;
 
 namespace GroupCapstone.Controllers
 {
@@ -32,7 +33,7 @@ namespace GroupCapstone.Controllers
                 return RedirectToAction(nameof(Create));
 
             }
-            CartSummary(customer.Id);
+            CartSummary();
 
             return View(_context.Products.ToList());
         }
@@ -70,14 +71,15 @@ namespace GroupCapstone.Controllers
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
+        // GET: /Customers/Cart
         public ActionResult Cart()
         {
-
+            CartSummary();
             var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
 
             var applicationDbContext = _context.ShoppingCarts.Where(s => s.CustomerId == customer.Id);
-
+            ViewBag.cart = applicationDbContext;
             return View(applicationDbContext.ToList());
         }
 
@@ -96,7 +98,7 @@ namespace GroupCapstone.Controllers
             {
                 return NotFound();
             }
-
+            CartSummary();
             return View(product);
         }
         // GET: Customers/Info/5
@@ -112,7 +114,7 @@ namespace GroupCapstone.Controllers
             {
                 return NotFound();
             }
-
+            CartSummary();
             return View(customer);
         }
 
@@ -128,7 +130,7 @@ namespace GroupCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,PhoneNumber,IdentityUserId")] Models.Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -147,14 +149,15 @@ namespace GroupCapstone.Controllers
             {
                 return NotFound();
             }
-
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
+            CartSummary();
+            var shppingCart = await _context.ShoppingCarts.FindAsync(id);
+            if (shppingCart == null)
             {
                 return NotFound();
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
-            return View(customer);
+            
+            // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", shppingCart.IdentityUserId);
+            return View(shppingCart);
         }
 
         // POST: Customers/Edit/5
@@ -162,23 +165,23 @@ namespace GroupCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Email,PhoneNumber,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Edit(int id, ShoppingCart shoppingCart)
         {
-            if (id != customer.Id)
+            if (id != shoppingCart.Id)
             {
                 return NotFound();
             }
-
+            CartSummary();
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(customer);
+                    _context.Update(shoppingCart);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.Id))
+                    if (!CustomerExists(shoppingCart.Id))
                     {
                         return NotFound();
                     }
@@ -189,8 +192,9 @@ namespace GroupCapstone.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
-            return View(customer);
+
+           // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            return View(shoppingCart);
         }
 
         // GET: Customers/Delete/5
@@ -200,16 +204,16 @@ namespace GroupCapstone.Controllers
             {
                 return NotFound();
             }
-
-            var customer = await _context.Customers
-                .Include(c => c.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            CartSummary();
+            var shoppingCart = await _context.ShoppingCarts.FirstOrDefaultAsync(m => m.Id == id);
+            if (shoppingCart == null)
             {
                 return NotFound();
             }
-
-            return View(customer);
+            //var shoppingCart = await _context.ShoppingCarts.FindAsync(id);
+            _context.ShoppingCarts.Remove(shoppingCart);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Cart));
         }
 
         // POST: Customers/Delete/5
@@ -217,16 +221,21 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(customer);
+
+            var shoppingCart = await _context.ShoppingCarts.FindAsync(id);
+            _context.ShoppingCarts.Remove(shoppingCart);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Cart));
         }
        
-        public ActionResult CartSummary(int id)
+        public ActionResult CartSummary()
         {
-            ViewData["CartCount"] = GetCount(id);
-            ViewData["CartTotalCost"] = GetTotalCost(id);
+
+            var customers = _context.Customers;
+            var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
+            ViewData["CartCount"] = GetCount(customer.Id);
+            ViewData["CartTotalCost"] = GetTotalCost(customer.Id);
 
             return PartialView("CartSummary");
         }
@@ -255,5 +264,37 @@ namespace GroupCapstone.Controllers
             // Return 0 if all entries are null
             return total ?? 0;
         }
-    }
+        public async Task<IActionResult> MakePayment(int? id)
+        {
+            
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MakePayment(int payment)
+        {
+            StripeConfiguration.ApiKey = "";
+
+            // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+            var options = new ChargeCreateOptions
+            {
+                Amount = (long)payment * 100,
+                Currency = "usd",
+                Source = "tok_visa",
+                Description = "My First Test Charge (created for API docs)",
+            };
+            var service = new ChargeService();
+            service.Create(options);
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // var loggedInCustomer = _context.Customers.Include(c => c.Address).FirstOrDefault(c => c.IdentityUserId == userId); - DIFFERENCE?
+            //var loggedInCustomer = _context.Customers.Include(c => c.Address).Where(c => c.IdentityUserId == userId).FirstOrDefault();
+            //loggedInCustomer.AccountBalance -= payment;
+            //_context.Update(loggedInCustomer);
+            //await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+    
+}
 }
