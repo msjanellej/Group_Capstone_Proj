@@ -183,8 +183,14 @@ body {
   top: -1rem;
   left: -2.4rem;
   min-width: 16rem;
-  z-index: 1;
-  text-decoration: none; }
+  z-index: 1; }
+  .dropdown-content a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: block;
+    transition: all .3s;
+    color: cornsilk; }
 
 .show {
   display: block; }
