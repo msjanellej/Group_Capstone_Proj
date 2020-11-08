@@ -1,0 +1,19 @@
+.nav-logo {
+  text-decoration: none;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  top: -1rem;
+  left: -2.4rem;
+  min-width: 16rem;
+  z-index: 1;
+  text-decoration: none;
+}
+
+
+.show {
+  display: block;  
+}

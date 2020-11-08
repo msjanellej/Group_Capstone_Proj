@@ -541,8 +541,7 @@ body {
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
-  backface-visibility: hidden;
-  margin-bottom: 6rem; }
+  backface-visibility: hidden; }
   .heading-primary--main {
     display: block;
     font-weight: 700;
@@ -621,6 +620,21 @@ body {
 .logo {
   fill: orangered; }
 
+.nav-logo {
+  text-decoration: none; }
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  top: -1rem;
+  left: -2.4rem;
+  min-width: 16rem;
+  z-index: 1;
+  text-decoration: none; }
+
+.show {
+  display: block; }
+
 .landing {
   height: 100vh;
   background-color: black;
@@ -631,10 +645,15 @@ body {
   .landing__logo-box {
     height: fit-content; }
   .landing__logo {
-    height: 4rem; }
+    height: 4rem;
+    transition-duration: 2s; }
+    .landing__logo:hover {
+      transform: scale(1.2) translate(-10%, -10%);
+      transition-duration: 2s;
+      cursor: pointer;
+      fill: blueviolet; }
   .landing__text-box {
     text-align: center;
     position: relative;
-    top: 66%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
+    top: 59%;
+    margin-bottom: 0; }

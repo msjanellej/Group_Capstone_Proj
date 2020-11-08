@@ -11,18 +11,24 @@
   position: relative;
 
   &__logo-box {
-height: fit-content;
-}
+  height: fit-content;
+  }
 
-&__logo {
-height: 4rem;
-}
+  &__logo {
+    height: 4rem;
+    transition-duration: 2s;
+    &:hover {
+      transform: scale(1.2) translate(-10%, -10%);
+      transition-duration: 2s;
+      cursor: pointer;
+      fill: blueviolet;
+    }
+  }
 
   &__text-box {
     text-align: center;
     position: relative;
-    top: 66%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 59%;
+    margin-bottom: 0;
   }
 }
