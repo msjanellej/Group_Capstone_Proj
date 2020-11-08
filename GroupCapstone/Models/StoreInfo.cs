@@ -24,7 +24,7 @@ namespace GroupCapstone.Models
 		public string AddressState { get; set; }
 
 		[Display(Name = "Zip Code")]
-		public int AddressZip { get; set; }
+		public string AddressZip { get; set; }
 
 		[Display(Name = "Store Hours")]
 		public string StoreHours { get; set; }
