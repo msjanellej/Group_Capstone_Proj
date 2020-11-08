@@ -28,7 +28,7 @@
                 Total
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductCategory)
+                Category
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ImageUrl)
@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-               <div id="@Html.DisplayFor(modelItem => item.Name)"></div>
+                @(item.Price * item.Qty)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductCategory)
@@ -76,12 +76,4 @@
     <button id="checkout-button">Checkout</button>
 
 
-<script>
-   var i;
-            for (i = 0; i < ViewBag.cart.length; i++)
-            {
-                var total = ViewBag.cart[i].Qty * ViewBag.cart[i].Price;
-                document.getElementById(ViewBag.cart[i].Name).value = total;
-            }
-                
-</script>
+.
