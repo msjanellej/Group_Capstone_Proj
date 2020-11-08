@@ -206,10 +206,11 @@ body {
     height: fit-content; }
   .landing__logo {
     height: 4rem;
-    transition-duration: 2s; }
+    transition-duration: 1s;
+    translate: 0, 1rem; }
     .landing__logo:hover {
-      transform: scale(1.2) translate(-10%, -10%);
-      transition-duration: 2s;
+      transform: scale(1.1) translate(0, -1rem);
+      transition-duration: 1s;
       cursor: pointer;
       fill: blueviolet; }
   .landing__text-box {
