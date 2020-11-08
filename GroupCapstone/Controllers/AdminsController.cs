@@ -27,14 +27,14 @@ namespace GroupCapstone.Controllers
         {
 			var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var applicationDbContext = _context.Admins.Where(a => a.IdentityUserId == userId).FirstOrDefault();
-   //         if(applicationDbContext == null)
-			//{
-   //             return RedirectToAction("Create");
-			//}
-   //         var customers =
-   //         var employees =
-   //         var
-            return View(applicationDbContext.Name);
+			if (applicationDbContext == null)
+			{
+				return RedirectToAction("Create");
+			}
+			//         var customers =
+			//         var employees =
+			//         var
+			return View(applicationDbContext.Name);
         }
 
         //private List<Customer> GetAllCustomers()
