@@ -17,7 +17,7 @@ using System.Drawing;
 
 namespace GroupCapstone.Controllers
 {
-    [Authorize (Roles = "Employee")]
+   // [Authorize (Roles = "Employee")]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -32,8 +32,7 @@ namespace GroupCapstone.Controllers
         {
             var employeesOnList = _context.Employees.ToList();
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var employee = _context.Employees.Where(c => c.IdentityUserId ==
-            userId).SingleOrDefault();
+            var employee = _context.Employees.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             if (employee == null)
             {
                 return RedirectToAction("Create");
