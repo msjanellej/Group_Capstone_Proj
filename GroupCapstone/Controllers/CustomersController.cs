@@ -9,6 +9,7 @@ using GroupCapstone.Data;
 using GroupCapstone.Models;
 using System.Security.Claims;
 using Stripe;
+using System.Net;
 
 namespace GroupCapstone.Controllers
 {
@@ -238,6 +239,7 @@ namespace GroupCapstone.Controllers
             ViewData["CartCount"] = GetCount(customer.Id);
             ViewData["CartTotalCost"] = GetTotalCost(customer.Id);
             ViewData["CustomerEmail"] = customer.Email;
+            ViewData["CustomerId"] = customer.Id;
             return PartialView("CartSummary");
         }
         private bool CustomerExists(int id)
@@ -265,14 +267,54 @@ namespace GroupCapstone.Controllers
             // Return 0 if all entries are null
             return total ?? 0;
         }
-   
+         public void OrderProccess(string reciept) 
+        {
+            CartSummary();
+            var customerId = ViewData["CustomerId"];
+            var totalCost = ViewData["CartTotalCost"];
+            
+            //shoopingcart qty, price, productid customerid
+            //order qty, price productid, orderId
+            //order Date, Totalprice, customerID
+
+            //add order to the database
+            Models.Order order = new Models.Order();
+            order.Date = DateTime.Now;
+            order.CustomerId = (int)customerId;
+            order.TotalPrice = (int)totalCost;
+            
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+            int lastProductId = _context.Orders.Max(item => item.Id);
+
+            //add orderDetails to the database one line at a time
+            var shoppingCart = _context.ShoppingCarts.Where(s => s.CustomerId == (int)customerId).ToList();
+            foreach (var item in shoppingCart)
+            {
+                OrderDetails orderDetails = new OrderDetails();
+                orderDetails.OrderId = lastProductId;
+                orderDetails.ProductId = item.ProductId;
+                orderDetails.Price = item.Price * item.Qty;
+                orderDetails.Quantity = item.Qty;
+                
+                _context.ShoppingCarts.Remove(item);
+                _context.OrderDetails.Add(orderDetails);
+                _context.SaveChanges();
+            }
+
+            //send eamil
+            using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
+            {
+                string htmlCode = client.DownloadString(reciept);
+            }
+        }
         public IActionResult Checkout(int? id)
         {
             CartSummary();
 
             return View();
         }
-
+        
         // POST: Customers/Create
         
         [HttpPost]
@@ -291,12 +333,19 @@ namespace GroupCapstone.Controllers
                 Currency = "usd",
                 Source = "tok_visa",
                 Description = "Order from app. Custom text could be brought in here",
-                ReceiptEmail = "miketreml@mac.com" //Email replace hard code after testing.
+                ReceiptEmail = (string)Email 
 
             };
             var service = new ChargeService();
-            service.Create(options);
-
+            var payment = service.Create(options);
+            if (payment.Status == "succeeded")
+            {
+                OrderProccess(payment.ReceiptUrl);
+            }
+            else
+            {
+                //place popup for error
+            }
            
            
             //await _context.SaveChangesAsync();
