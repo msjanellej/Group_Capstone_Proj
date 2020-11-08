@@ -67,7 +67,14 @@ ORDER: Base + typography > general layout + grid > page layout > components
   box-sizing: inherit; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  height: 100vh;
+  background-color: black;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../Assets/img/hero-1-medium.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  filter: brightness(0.5) blur(0.5); }
   @media only screen and (min-width: 37.5em) {
     html {
       font-size: 50%; } }
@@ -90,7 +97,7 @@ body {
   font-weight: 400;
   /*font-size: 16px;*/
   line-height: 1.7;
-  color: #999; }
+  color: #333; }
 
 .heading-primary {
   color: #fff;
@@ -171,12 +178,84 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
+.btn, .btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all .2s;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer; }
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
+
+.btn:active, .btn:focus {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #999; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn--primary {
+  background-color: #007bcc;
+  color: #fff; }
+  .btn--primary::after {
+    background-color: #007bcc; }
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s; }
+
+.btn--animated {
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards; }
+
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #007bcc;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #007bcc;
+  padding: 3px;
+  transition: all .2s; }
+
+.btn-text:hover {
+  background-color: #007bcc;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.btn-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0); }
+
 .form {
   margin-top: 1rem;
-  background-color: #e2dac2;
+  background-color: #999;
   border-radius: 1.5rem;
-  box-shadow: 0 1rem 4rem #a2a2a2, 0 0 0 2rem #fff;
-  max-width: 30rem; }
+  box-shadow: 0 1rem 4rem #333, 0 0 0 2rem #fff; }
   .form__group:not(:last-child) {
     margin-bottom: .5rem; }
   .form__input {
@@ -191,9 +270,9 @@ body {
     width: 100%;
     display: block;
     transition: all .3s; }
-    @media only screen and (min-width: 37.5em) {
+    @media only screen and (min-width: 56.25em) {
       .form__input {
-        width: 100%; } }
+        width: 60%; } }
     .form__input:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -255,7 +334,7 @@ body {
       transform: scale(1.1) translate(0, -1rem);
       transition-duration: 1s;
       cursor: pointer;
-      fill: blueviolet; }
+      fill: #801856; }
   .landing__text-box {
     text-align: center;
     position: relative;
