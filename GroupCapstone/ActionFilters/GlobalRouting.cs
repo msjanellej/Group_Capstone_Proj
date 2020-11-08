@@ -22,7 +22,7 @@ namespace GroupCapstone.ActionFilters
 					{
 							if (_claimsPrincipal.IsInRole("Admin"))
 							{
-								context.Result = new RedirectToActionResult("Index", "Admins", null);
+								context.Result = new RedirectToActionResult("Index", "Admin", null);
 							}
 							else if (_claimsPrincipal.IsInRole("Customer"))    // If user role is customer, redirect to home/index belonging to customer view
 							{

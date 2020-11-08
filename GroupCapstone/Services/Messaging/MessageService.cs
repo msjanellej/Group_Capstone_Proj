@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using IronBarCode;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using System;
@@ -24,18 +25,19 @@ namespace GroupCapstone.Services.Messaging
             email.To.Add(new MailboxAddress(toName, toEmailAddress));
             email.Subject = subject;
 
+
             var body = new BodyBuilder
             {
                 HtmlBody = message
             };
             //foreach (var attachment in attachments)
             //{
-               // using (var stream = await attachment.ContentToStreamAsync())
-                //{
-                   // body.Attachments.Add(attachment.FileName, stream);
-                //}
+            // using (var stream = await attachment.ContentToStreamAsync())
+            //{
+            // body.Attachments.Add(attachment.FileName, stream);
             //}
-
+            //}
+            body.Attachments.Add("qrcode.pdf");
             email.Body = body.ToMessageBody();
 
             using (var client = new SmtpClient())

@@ -34,11 +34,11 @@ namespace GroupCapstone.Data
 				 );
 			builder.Entity<Product>()
 			  .HasData(
-					new Product { Id = 1, Name = "Cheese", Details = "Wisconsin cheese from Mexico.", Price = 2, ProductCategory = "Dairy", ImageUrl = "" },
-					new Product { Id = 2, Name = "Coffee", Details = "Harvested by blind monks.", Price = 20, ProductCategory = "Dry goods", ImageUrl = "" },
-					new Product { Id = 3, Name = "Vegan Sausages", Details = "99% tofu the rest is a secrect.", Price = 9, ProductCategory = "Vegan", ImageUrl = "" },
-					new Product { Id = 4, Name = "Dog food", Details = "No horses were harmed in the making of this product.", Price = 5, ProductCategory = "Pets", ImageUrl = "" },
-					new Product { Id = 5, Name = "Windex", Details = "Please do not drink this product", Price = 3, ProductCategory = "Cleaners", ImageUrl = "" }
+					new Product { Id = 1, Name = "Cheese", Details = "Wisconsin cheese from Mexico.", Price = 210, ProductCategory = "Dairy", ImageUrl = "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg" },
+					new Product { Id = 2, Name = "Coffee", Details = "Harvested by blind monks.", Price = 2019, ProductCategory = "Dry goods", ImageUrl = "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg" },
+					new Product { Id = 3, Name = "Vegan Sausages", Details = "99% tofu the rest is a secrect.", Price = 950, ProductCategory = "Vegan", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg" },
+					new Product { Id = 4, Name = "Dog food", Details = "No horses were harmed in the making of this product.", Price = 599, ProductCategory = "Pets", ImageUrl = "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png" },
+					new Product { Id = 5, Name = "Windex", Details = "Please do not drink this product", Price = 356, ProductCategory = "Cleaners", ImageUrl = "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg" }
 				 );
 			builder.Entity<Order>()
 			  .HasData(
@@ -58,6 +58,9 @@ namespace GroupCapstone.Data
 					new OrderDetails { Id = 5, ProductId = 5, OrderId = 4, Quantity = 14 },
 					new OrderDetails { Id = 6, ProductId = 3, OrderId = 4, Quantity = 2 }
 					);
+			builder.Entity<StoreInfo>()
+			  .HasData(
+					new StoreInfo { Id = 1, Name = "Curb Hoppers", StreetAddress = "313 N Plankinton Ave", AddressCity = "Milwaukee", AddressState = "WI", AddressZip = "53203", StoreHours = "24/7", PhoneNumber = "867-5309" , Email = "ICU@curbhoppers.com", CompanyVision = "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.", Logo=""});
 
 		}
 		public DbSet<Customer> Customers { get; set; }
