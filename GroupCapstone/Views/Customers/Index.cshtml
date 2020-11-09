@@ -16,10 +16,7 @@
     <div class="row">
         <div class="col-1-of-4">
             <div class="products-box">
-                
-                <div class="products-box__image" style="background-image:url(@Html.DisplayFor(modelItem => item.ImageUrl))">
-                    IMG goes HERE
-                </div>
+                <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="" class="products-box">
 
                 <h3 class="heading-tertiary u-margin-bottom-small">@Html.DisplayFor(modelItem => item.Name)<br>@Html.DisplayFor(modelItem => item.ProductCategory)</h3>
                 <p class="projects-box__text">
