@@ -243,7 +243,8 @@ namespace GroupCapstone.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["CartCount"] = GetCount(customer.Id);
-            ViewData["CartTotalCost"] = Math.Round(GetTotalCost(customer.Id), 2); 
+            ViewData["CartTotalCost"] = Math.Round(GetTotalCost(customer.Id), 2);
+            ViewData["CartTotalCostString"] = Math.Round(GetTotalCost(customer.Id), 2).ToString("0.00");
             ViewData["CustomerEmail"] = customer.Email;
             ViewData["CustomerId"] = customer.Id;
             return PartialView("CartSummary");

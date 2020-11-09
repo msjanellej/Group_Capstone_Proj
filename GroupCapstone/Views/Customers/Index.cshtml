@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 <partial name="_LoginPartial" class=""/>
-<a class="btn btn--cart" asp-area="" asp-controller="Customers" asp-action="Cart"><span id="cart_count">Cart(@ViewData["CartCount"])</span> <span>$@ViewData["CartTotalCost"]</span></a>
+<a class="btn btn--cart" asp-area="" asp-controller="Customers" asp-action="Cart"><span id="cart_count">Cart(@ViewData["CartCount"])</span> <span>$@ViewData["CartTotalCostString"]</span></a>
 
 <h1 class="heading-primary--main">Browse Our Products! </h1>
 
@@ -23,7 +23,7 @@
 
                 <h3 class="heading-tertiary u-margin-bottom-small">@Html.DisplayFor(modelItem => item.Name)<br>@Html.DisplayFor(modelItem => item.ProductCategory)</h3>
                 <p class="projects-box__text">
-                    @item.Price
+                    $@item.Price.ToString("0.00")
                 </p>
                 <p class="projects-box__text">
                      @Html.DisplayFor(modelItem => item.Details)
