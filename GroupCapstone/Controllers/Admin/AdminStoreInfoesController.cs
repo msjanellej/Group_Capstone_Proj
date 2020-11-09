@@ -63,9 +63,11 @@ namespace GroupCapstone.Controllers
                 _context.Add(storeInfo);
                 await _context.SaveChangesAsync();
 
+                var addressString = string.Format("https://maps.googleapis.com/maps/api/geocode/json?address=" +storeInfo.StreetAddress + " " + storeInfo.AddressCity + " " + storeInfo.AddressState + " " + storeInfo.AddressZip+ "&key="+APIKEYS.GoogleAPI);
+              
                 
-                IGeocoder geocoder = new GoogleGeocoder() { ApiKey = APIKEYS.GOOGLE_MAP };
-                IEnumerable<Geocoding.Address> addresses = await geocoder.GeocodeAsync(storeInfo.StreetAddress + " " + storeInfo.AddressCity + " " + storeInfo.AddressState + " " + storeInfo.AddressZip);
+                IGeocoder geocoder = new GoogleGeocoder() { ApiKey = APIKEYS.GoogleAPI };
+                IEnumerable<Address> addresses = await geocoder.GeocodeAsync(addressString);
                 storeInfo.Latitude = addresses.First().Coordinates.Latitude;
                 storeInfo.Longitude = addresses.First().Coordinates.Longitude;
                 _context.Update(storeInfo);

@@ -60,9 +60,9 @@ namespace GroupCapstone.Data
 					);
 			builder.Entity<StoreInfo>()
 			  .HasData(
-					new StoreInfo { Id = 1, Name = "Curb Hoppers", StreetAddress = "313 N Plankinton Ave", AddressCity = "Milwaukee", AddressState = "WI", AddressZip = "53203", StoreHours = "24/7", PhoneNumber = "867-5309" , Email = "ICU@curbhoppers.com", CompanyVision = "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.", Logo=""});
+					new StoreInfo { Id = 1, Name = "Curb Hoppers", StreetAddress = "313 N Plankinton Ave", AddressCity = "Milwaukee", AddressState = "WI", AddressZip = "53203", StoreHours = "24/7", PhoneNumber = "867-5309" , Email = "ICU@curbhoppers.com", CompanyVision = "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.", Logo="",Latitude= 43.0342198,Longitude= -87.9120726 });
 
-		}
+					}
 		public DbSet<Customer> Customers { get; set; }
 		public DbSet<Employee> Employees { get; set; }
 		public DbSet<Admin> Admins { get; set; }
