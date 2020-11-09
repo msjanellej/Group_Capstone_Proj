@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-    [Migration("20201109040431_initial")]
+    [Migration("20201109070058_initial")]
     partial class initial
-=======
-    [Migration("20201109050637_intial16")]
-    partial class intial16
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -360,11 +355,7 @@ namespace GroupCapstone.Migrations
                             Details = "Wisconsin cheese from Mexico.",
                             ImageUrl = "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg",
                             Name = "Cheese",
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Price = 210,
-=======
                             Price = 2.1000000000000001,
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
                             ProductCategory = "Dairy"
                         },
                         new
@@ -373,11 +364,7 @@ namespace GroupCapstone.Migrations
                             Details = "Harvested by blind monks.",
                             ImageUrl = "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg",
                             Name = "Coffee",
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Price = 2019,
-=======
                             Price = 20.190000000000001,
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
                             ProductCategory = "Dry goods"
                         },
                         new
@@ -386,11 +373,7 @@ namespace GroupCapstone.Migrations
                             Details = "99% tofu the rest is a secrect.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg",
                             Name = "Vegan Sausages",
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Price = 950,
-=======
                             Price = 9.5,
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
                             ProductCategory = "Vegan"
                         },
                         new
@@ -399,11 +382,7 @@ namespace GroupCapstone.Migrations
                             Details = "No horses were harmed in the making of this product.",
                             ImageUrl = "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png",
                             Name = "Dog food",
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Price = 599,
-=======
                             Price = 5.9900000000000002,
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
                             ProductCategory = "Pets"
                         },
                         new
@@ -412,11 +391,7 @@ namespace GroupCapstone.Migrations
                             Details = "Please do not drink this product",
                             ImageUrl = "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg",
                             Name = "Windex",
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Price = 356,
-=======
                             Price = 3.5600000000000001,
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
                             ProductCategory = "Cleaners"
                         });
                 });
@@ -514,9 +489,9 @@ namespace GroupCapstone.Migrations
                             AddressZip = "53203",
                             CompanyVision = "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.",
                             Email = "ICU@curbhoppers.com",
-                            Latitude = 0.0,
+                            Latitude = 43.034219800000002,
                             Logo = "",
-                            Longitude = 0.0,
+                            Longitude = -87.912072600000002,
                             Name = "Curb Hoppers",
                             PhoneNumber = "867-5309",
                             StoreHours = "24/7",
@@ -553,37 +528,22 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Id = "03e02d81-d8b4-454e-92df-970fb7bc3e30",
-                            ConcurrencyStamp = "31e75e70-7187-4cb4-afaf-8c3bfad4aa27",
-=======
-                            Id = "f0ce4a07-a5c6-4810-bd89-262e14b10d1a",
-                            ConcurrencyStamp = "f6a5cf1f-4cfb-4bbd-8fdb-8d6950043089",
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
+                            Id = "1f94e3d2-0a4f-4b80-a3b4-63b5a08b0514",
+                            ConcurrencyStamp = "76725f25-1609-4748-8b67-be5b3bf1c2a5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Id = "4127ac04-41dc-4d6a-a3cf-70e32f60ad22",
-                            ConcurrencyStamp = "9d5e9a27-43e2-4af7-b81f-d8232ce590af",
-=======
-                            Id = "939ba267-9394-4650-ab5f-5ee745029f10",
-                            ConcurrencyStamp = "d9d120bb-cd2b-4493-a7ab-0f4be3dbe91d",
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
+                            Id = "cc93ac03-6238-4e76-bba7-d70a836d545b",
+                            ConcurrencyStamp = "f6bd5518-1cd7-4ad4-b5a6-2eb11d962828",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.Designer.cs
-                            Id = "a0832112-fd68-44fa-8ead-cb89d8c6a731",
-                            ConcurrencyStamp = "e070bb91-59f8-4020-b446-29c09b83b074",
-=======
-                            Id = "a0a86acf-3f16-4f98-a638-4c9f6e66f1e2",
-                            ConcurrencyStamp = "fcc25889-40a4-47c1-9f60-fa7c873513ac",
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.Designer.cs
+                            Id = "ac0207f7-5d99-4f32-b39c-b789e5e1e566",
+                            ConcurrencyStamp = "9495145b-f137-40ed-a1e4-258b834ffbf8",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupCapstone.Migrations
 {
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.cs
     public partial class initial : Migration
-=======
-    public partial class intial16 : Migration
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -380,15 +376,9 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.cs
-                    { "03e02d81-d8b4-454e-92df-970fb7bc3e30", "31e75e70-7187-4cb4-afaf-8c3bfad4aa27", "Admin", "ADMIN" },
-                    { "4127ac04-41dc-4d6a-a3cf-70e32f60ad22", "9d5e9a27-43e2-4af7-b81f-d8232ce590af", "Employee", "EMPLOYEE" },
-                    { "a0832112-fd68-44fa-8ead-cb89d8c6a731", "e070bb91-59f8-4020-b446-29c09b83b074", "Customer", "CUSTOMER" }
-=======
-                    { "f0ce4a07-a5c6-4810-bd89-262e14b10d1a", "f6a5cf1f-4cfb-4bbd-8fdb-8d6950043089", "Admin", "ADMIN" },
-                    { "939ba267-9394-4650-ab5f-5ee745029f10", "d9d120bb-cd2b-4493-a7ab-0f4be3dbe91d", "Employee", "EMPLOYEE" },
-                    { "a0a86acf-3f16-4f98-a638-4c9f6e66f1e2", "fcc25889-40a4-47c1-9f60-fa7c873513ac", "Customer", "CUSTOMER" }
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.cs
+                    { "1f94e3d2-0a4f-4b80-a3b4-63b5a08b0514", "76725f25-1609-4748-8b67-be5b3bf1c2a5", "Admin", "ADMIN" },
+                    { "cc93ac03-6238-4e76-bba7-d70a836d545b", "f6bd5518-1cd7-4ad4-b5a6-2eb11d962828", "Employee", "EMPLOYEE" },
+                    { "ac0207f7-5d99-4f32-b39c-b789e5e1e566", "9495145b-f137-40ed-a1e4-258b834ffbf8", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -408,25 +398,17 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "Details", "ImageUrl", "Name", "Price", "ProductCategory" },
                 values: new object[,]
                 {
-<<<<<<< HEAD:GroupCapstone/Migrations/20201109040431_initial.cs
-                    { 1, "Wisconsin cheese from Mexico.", "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg", "Cheese", 210, "Dairy" },
-                    { 2, "Harvested by blind monks.", "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg", "Coffee", 2019, "Dry goods" },
-                    { 3, "99% tofu the rest is a secrect.", "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg", "Vegan Sausages", 950, "Vegan" },
-                    { 4, "No horses were harmed in the making of this product.", "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png", "Dog food", 599, "Pets" },
-                    { 5, "Please do not drink this product", "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg", "Windex", 356, "Cleaners" }
-=======
                     { 1, "Wisconsin cheese from Mexico.", "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg", "Cheese", 2.1000000000000001, "Dairy" },
                     { 2, "Harvested by blind monks.", "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg", "Coffee", 20.190000000000001, "Dry goods" },
                     { 3, "99% tofu the rest is a secrect.", "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg", "Vegan Sausages", 9.5, "Vegan" },
                     { 4, "No horses were harmed in the making of this product.", "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png", "Dog food", 5.9900000000000002, "Pets" },
                     { 5, "Please do not drink this product", "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg", "Windex", 3.5600000000000001, "Cleaners" }
->>>>>>> bd40dbf257567496997dd0d3dba3e717d281c73e:GroupCapstone/Migrations/20201109050637_intial16.cs
                 });
 
             migrationBuilder.InsertData(
                 table: "StoreInfo",
                 columns: new[] { "Id", "AddressCity", "AddressState", "AddressZip", "CompanyVision", "Email", "Latitude", "Logo", "Longitude", "Name", "PhoneNumber", "StoreHours", "StreetAddress" },
-                values: new object[] { 1, "Milwaukee", "WI", "53203", "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.", "ICU@curbhoppers.com", 0.0, "", 0.0, "Curb Hoppers", "867-5309", "24/7", "313 N Plankinton Ave" });
+                values: new object[] { 1, "Milwaukee", "WI", "53203", "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.", "ICU@curbhoppers.com", 43.034219800000002, "", -87.912072600000002, "Curb Hoppers", "867-5309", "24/7", "313 N Plankinton Ave" });
 
             migrationBuilder.InsertData(
                 table: "Orders",
