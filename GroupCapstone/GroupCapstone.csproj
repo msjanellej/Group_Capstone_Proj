@@ -10,7 +10,6 @@
     <Content Remove="Data\Migrations\**" />
     <EmbeddedResource Remove="Data\Migrations\**" />
     <None Remove="Data\Migrations\**" />
-    <None Remove="Migrations\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="Services\Messaging\Email\" />
 
   </ItemGroup>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201108170304_initial2234")]
-    partial class initial2234
+    [Migration("20201109040431_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -353,45 +353,45 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 1,
                             Details = "Wisconsin cheese from Mexico.",
-                            ImageUrl = "",
+                            ImageUrl = "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg",
                             Name = "Cheese",
-                            Price = 2,
+                            Price = 210,
                             ProductCategory = "Dairy"
                         },
                         new
                         {
                             Id = 2,
                             Details = "Harvested by blind monks.",
-                            ImageUrl = "",
+                            ImageUrl = "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg",
                             Name = "Coffee",
-                            Price = 20,
+                            Price = 2019,
                             ProductCategory = "Dry goods"
                         },
                         new
                         {
                             Id = 3,
                             Details = "99% tofu the rest is a secrect.",
-                            ImageUrl = "",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg",
                             Name = "Vegan Sausages",
-                            Price = 9,
+                            Price = 950,
                             ProductCategory = "Vegan"
                         },
                         new
                         {
                             Id = 4,
                             Details = "No horses were harmed in the making of this product.",
-                            ImageUrl = "",
+                            ImageUrl = "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png",
                             Name = "Dog food",
-                            Price = 5,
+                            Price = 599,
                             ProductCategory = "Pets"
                         },
                         new
                         {
                             Id = 5,
                             Details = "Please do not drink this product",
-                            ImageUrl = "",
+                            ImageUrl = "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg",
                             Name = "Windex",
-                            Price = 3,
+                            Price = 356,
                             ProductCategory = "Cleaners"
                         });
                 });
@@ -446,8 +446,8 @@ namespace GroupCapstone.Migrations
                     b.Property<string>("AddressState")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AddressZip")
-                        .HasColumnType("int");
+                    b.Property<string>("AddressZip")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyVision")
                         .HasColumnType("nvarchar(max)");
@@ -479,6 +479,24 @@ namespace GroupCapstone.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("StoreInfo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressCity = "Milwaukee",
+                            AddressState = "WI",
+                            AddressZip = "53203",
+                            CompanyVision = "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.",
+                            Email = "ICU@curbhoppers.com",
+                            Latitude = 0.0,
+                            Logo = "",
+                            Longitude = 0.0,
+                            Name = "Curb Hoppers",
+                            PhoneNumber = "867-5309",
+                            StoreHours = "24/7",
+                            StreetAddress = "313 N Plankinton Ave"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -510,22 +528,22 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ec9c0d24-07da-427e-a173-0e6acf155810",
-                            ConcurrencyStamp = "ae6e5266-9293-4865-89b5-360301413dd6",
+                            Id = "03e02d81-d8b4-454e-92df-970fb7bc3e30",
+                            ConcurrencyStamp = "31e75e70-7187-4cb4-afaf-8c3bfad4aa27",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e1d6f037-fceb-4aa1-b3f0-e7ef4946750c",
-                            ConcurrencyStamp = "5d8eb159-0cfc-41ac-ac92-84b879ccc8b8",
+                            Id = "4127ac04-41dc-4d6a-a3cf-70e32f60ad22",
+                            ConcurrencyStamp = "9d5e9a27-43e2-4af7-b81f-d8232ce590af",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "809b7ad9-c0cd-4a55-b9e4-c9a55e1d732c",
-                            ConcurrencyStamp = "03b487c7-9b9a-4888-829d-ade3646d7eb0",
+                            Id = "a0832112-fd68-44fa-8ead-cb89d8c6a731",
+                            ConcurrencyStamp = "e070bb91-59f8-4020-b446-29c09b83b074",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupCapstone.Migrations
 {
-    public partial class initial22 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,7 +73,7 @@ namespace GroupCapstone.Migrations
                     StreetAddress = table.Column<string>(nullable: true),
                     AddressCity = table.Column<string>(nullable: true),
                     AddressState = table.Column<string>(nullable: true),
-                    AddressZip = table.Column<int>(nullable: false),
+                    AddressZip = table.Column<string>(nullable: true),
                     StoreHours = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     Logo = table.Column<string>(nullable: true),
@@ -376,9 +376,9 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "bbd49c5a-63e7-4671-adb0-abdcfee856b1", "8c902006-0dbd-4464-a493-9662b736469b", "Admin", "ADMIN" },
-                    { "d927a9cc-db29-436e-b149-8bcc006994f8", "c31e61a1-6edd-4834-be9d-d0579eb36852", "Employee", "EMPLOYEE" },
-                    { "65e094f2-b824-4129-8aaf-1c1b826b8b63", "47a353b5-cf9d-4b2b-8321-8411d183f013", "Customer", "CUSTOMER" }
+                    { "03e02d81-d8b4-454e-92df-970fb7bc3e30", "31e75e70-7187-4cb4-afaf-8c3bfad4aa27", "Admin", "ADMIN" },
+                    { "4127ac04-41dc-4d6a-a3cf-70e32f60ad22", "9d5e9a27-43e2-4af7-b81f-d8232ce590af", "Employee", "EMPLOYEE" },
+                    { "a0832112-fd68-44fa-8ead-cb89d8c6a731", "e070bb91-59f8-4020-b446-29c09b83b074", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -398,12 +398,17 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "Details", "ImageUrl", "Name", "Price", "ProductCategory" },
                 values: new object[,]
                 {
-                    { 1, "Wisconsin cheese from Mexico.", "", "Cheese", 2, "Dairy" },
-                    { 2, "Harvested by blind monks.", "", "Coffee", 20, "Dry goods" },
-                    { 3, "99% tofu the rest is a secrect.", "", "Vegan Sausages", 9, "Vegan" },
-                    { 4, "No horses were harmed in the making of this product.", "", "Dog food", 5, "Pets" },
-                    { 5, "Please do not drink this product", "", "Windex", 3, "Cleaners" }
+                    { 1, "Wisconsin cheese from Mexico.", "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg", "Cheese", 210, "Dairy" },
+                    { 2, "Harvested by blind monks.", "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg", "Coffee", 2019, "Dry goods" },
+                    { 3, "99% tofu the rest is a secrect.", "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg", "Vegan Sausages", 950, "Vegan" },
+                    { 4, "No horses were harmed in the making of this product.", "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png", "Dog food", 599, "Pets" },
+                    { 5, "Please do not drink this product", "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg", "Windex", 356, "Cleaners" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "StoreInfo",
+                columns: new[] { "Id", "AddressCity", "AddressState", "AddressZip", "CompanyVision", "Email", "Latitude", "Logo", "Longitude", "Name", "PhoneNumber", "StoreHours", "StreetAddress" },
+                values: new object[] { 1, "Milwaukee", "WI", "53203", "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.", "ICU@curbhoppers.com", 0.0, "", 0.0, "Curb Hoppers", "867-5309", "24/7", "313 N Plankinton Ave" });
 
             migrationBuilder.InsertData(
                 table: "Orders",

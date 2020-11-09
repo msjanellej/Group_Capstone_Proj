@@ -4,13 +4,13 @@
 	ViewData["Title"] = "Register";
 }
 
-
-<h1 class="heading-primary--main">@ViewData["Title"]</h1>
+<div class="section-register">
+	<h1 class="heading-primary--main">@ViewData["Title"]</h1>
 
 <div class="">
 	<div class="">
 		<form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form">
-			<h4 class="heading-primary--sub">Create a new account.</h4>
+			<h4 class="heading-primary--sub">Create a new account</h4>
 			<hr />
 			<div asp-validation-summary="All" class="text-danger"></div>
 			<div class="form__group">
@@ -44,6 +44,8 @@
 	</div>
 
 </div>
+</div>
+
 
 @section Scripts {
 	<partial name="_ValidationScriptsPartial" />
