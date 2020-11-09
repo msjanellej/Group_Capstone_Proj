@@ -42,8 +42,6 @@ namespace GroupCapstone.Controllers
             orders = order.OrderBy(o => o.Date).ToList();
             return View(orders);
         }
-
-
         public IActionResult OrderDetailsIndex(int? id)
         {
             List<OrderDetails> orderDetails = _context.OrderDetails.ToList();
@@ -78,7 +76,6 @@ namespace GroupCapstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmOrderComplete(Order order)
         {
-
             var orderToComplete = _context.Orders.Single(o => o.Id == order.Id);
             orderToComplete.IsCompleted = order.IsCompleted;
 
@@ -87,7 +84,6 @@ namespace GroupCapstone.Controllers
         }
         public ActionResult ConfirmOrderPicked(int id)
         {
-
             var order = _context.Orders.Where(o => o.Id == id).SingleOrDefault();
             if (order == null)
             {
@@ -132,7 +128,6 @@ namespace GroupCapstone.Controllers
         {
             return View();
         }
-
         // POST: EmployeesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -151,17 +146,8 @@ namespace GroupCapstone.Controllers
                 return View();
             }
         }
-        //public GeneratedBarcode GetQRCode(Order order)
-        //{
-        //    var qrCode = QRCodeWriter.CreateQrCode(order.Id.ToString(), 500, QRCodeWriter.QrErrorCorrectionLevel.Medium).SaveAsPng("MyQR.png");
-        //    return qrCode;
-        //}
-
+        
     }
-
-
-
-
 
 }
 
