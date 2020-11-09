@@ -17,7 +17,7 @@ using System.Drawing;
 
 namespace GroupCapstone.Controllers
 {
-   // [Authorize (Roles = "Employee")]
+   [Authorize (Roles = "Employee")]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -37,8 +37,9 @@ namespace GroupCapstone.Controllers
             {
                 return RedirectToAction("Create");
             }
-            List<Order>? orders = new List<Order>();
-            orders = _context.Orders.Where(o => o.IsCompleted == false).ToList();
+            List<Order> orders = new List<Order>();
+            var order = _context.Orders.Where(o => o.IsCompleted == false);
+            orders = order.OrderBy(o => o.Date).ToList();
             return View(orders);
         }
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupCapstone.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -376,9 +376,9 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1f94e3d2-0a4f-4b80-a3b4-63b5a08b0514", "76725f25-1609-4748-8b67-be5b3bf1c2a5", "Admin", "ADMIN" },
-                    { "cc93ac03-6238-4e76-bba7-d70a836d545b", "f6bd5518-1cd7-4ad4-b5a6-2eb11d962828", "Employee", "EMPLOYEE" },
-                    { "ac0207f7-5d99-4f32-b39c-b789e5e1e566", "9495145b-f137-40ed-a1e4-258b834ffbf8", "Customer", "CUSTOMER" }
+                    { "720d6768-0a8a-421a-9e1f-be11413a3028", "f7ce4efc-9b25-46bd-8469-1b38b88445a4", "Admin", "ADMIN" },
+                    { "d52dac35-154b-4aa8-80d6-fc9372bbce01", "42f29986-6f4b-4485-9af1-4358dc09eedc", "Employee", "EMPLOYEE" },
+                    { "26067f6a-d0c0-4e66-b3a7-5a93dc1f7996", "55dd2e66-240a-4def-bf3b-f3aeef5afd3c", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
