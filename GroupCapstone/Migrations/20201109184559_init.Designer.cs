@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201109070058_initial")]
-    partial class initial
+    [Migration("20201109184559_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -528,22 +528,22 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1f94e3d2-0a4f-4b80-a3b4-63b5a08b0514",
-                            ConcurrencyStamp = "76725f25-1609-4748-8b67-be5b3bf1c2a5",
+                            Id = "720d6768-0a8a-421a-9e1f-be11413a3028",
+                            ConcurrencyStamp = "f7ce4efc-9b25-46bd-8469-1b38b88445a4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cc93ac03-6238-4e76-bba7-d70a836d545b",
-                            ConcurrencyStamp = "f6bd5518-1cd7-4ad4-b5a6-2eb11d962828",
+                            Id = "d52dac35-154b-4aa8-80d6-fc9372bbce01",
+                            ConcurrencyStamp = "42f29986-6f4b-4485-9af1-4358dc09eedc",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "ac0207f7-5d99-4f32-b39c-b789e5e1e566",
-                            ConcurrencyStamp = "9495145b-f137-40ed-a1e4-258b834ffbf8",
+                            Id = "26067f6a-d0c0-4e66-b3a7-5a93dc1f7996",
+                            ConcurrencyStamp = "55dd2e66-240a-4def-bf3b-f3aeef5afd3c",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

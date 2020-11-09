@@ -341,9 +341,26 @@ namespace GroupCapstone.Controllers
 
             return View();
         }
+
         
+        public async Task<IActionResult> StoreInfo(int? id)
+        {
+            CartSummary();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var storeInfo = await _context.StoreInfo
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (storeInfo == null)
+            {
+                return NotFound();
+            }
+
+            return View(storeInfo);
+        }
         // POST: Customers/Create
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout()
@@ -351,12 +368,14 @@ namespace GroupCapstone.Controllers
             CartSummary();
             var totalCost = ViewData["CartTotalCost"];
             var Email = ViewData["CustomerEmail"];
+            int save = (int)((double)totalCost * 100);
             StripeConfiguration.ApiKey = APIKEYS.StripeApiKey;
-           
+
             // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
             var options = new ChargeCreateOptions
             {
-                Amount = (long)totalCost*100,
+                
+                Amount = save,
                 Currency = "usd",
                 Source = "tok_visa",
                 Description = "Order from app. Custom text could be brought in here",
