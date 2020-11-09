@@ -17,8 +17,8 @@ namespace GroupCapstone.Services.Messaging
             string toName, 
             string toEmailAddress, 
             string subject, 
-            string message) 
-            //params Attachment[] attachments)
+            string message, 
+            bool attachment)
         {
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress(fromDisplayName, fromEmailAddress));
@@ -37,7 +37,11 @@ namespace GroupCapstone.Services.Messaging
             // body.Attachments.Add(attachment.FileName, stream);
             //}
             //}
-            body.Attachments.Add("qrcode.pdf");
+            if (attachment)
+            {
+                body.Attachments.Add("qrcode.pdf");
+            }
+            
             email.Body = body.ToMessageBody();
 
             using (var client = new SmtpClient())

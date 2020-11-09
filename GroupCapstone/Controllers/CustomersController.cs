@@ -10,6 +10,8 @@ using GroupCapstone.Models;
 using System.Security.Claims;
 using Stripe;
 using System.Net;
+using GroupCapstone.Services.Messaging;
+using GroupCapstone.Services.Messaging.Email;
 
 namespace GroupCapstone.Controllers
 {
@@ -267,12 +269,12 @@ namespace GroupCapstone.Controllers
             // Return 0 if all entries are null
             return total ?? 0;
         }
-         public void OrderProccess(string reciept) 
+         public async void OrderProccess(string reciept) 
         {
             CartSummary();
             var customerId = ViewData["CustomerId"];
             var totalCost = ViewData["CartTotalCost"];
-            
+            string htmlCode;
             //shoopingcart qty, price, productid customerid
             //order qty, price productid, orderId
             //order Date, Totalprice, customerID
@@ -302,11 +304,32 @@ namespace GroupCapstone.Controllers
                 _context.SaveChanges();
             }
 
+            Models.Customer customer = _context.Customers.Where(s => s.Id == (int)customerId).FirstOrDefault();
+
+            
             //send eamil
             using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
             {
-                string htmlCode = client.DownloadString(reciept);
+                htmlCode = client.DownloadString(reciept);
             }
+            await SendEmail(customer, htmlCode);
+            
+        }
+
+        public async Task SendEmail(Models.Customer customer, string html)
+        {
+            string emailBody = html;
+
+            MessageService service = new MessageService();
+            //Email.GetQRCode(order);
+            await service.SendEmailAsync(
+                    "BusinessName",
+                    APIKEYS.emailId,
+                    customer.FirstName,
+                    customer.Email,
+                    "Your order has been recieved",
+                    emailBody, false);
+
         }
         public IActionResult Checkout(int? id)
         {
