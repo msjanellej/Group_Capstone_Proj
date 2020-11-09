@@ -325,6 +325,8 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem); }
+  .form-btn {
+    border-radius: 0px 2rem; }
 
 .row {
   max-width: 114rem;
@@ -495,4 +497,7 @@ body {
     margin-bottom: 0; }
 
 .section-register {
+  padding: 1rem; }
+
+.section-login {
   padding: 1rem; }
