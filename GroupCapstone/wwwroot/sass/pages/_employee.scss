@@ -1,0 +1,19 @@
+.section-orders {
+  padding: 4rem 0;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-tertiary-dark, 0.8));
+  background-size: cover;
+  transform: skewY(-4deg);
+  width: 100%;
+
+  & > * {
+      transform: skewY(4deg);
+  }
+
+  @include respond(tab-port) {
+      padding: 10rem 0;
+  }
+
+}

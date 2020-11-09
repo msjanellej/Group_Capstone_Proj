@@ -49,8 +49,8 @@
                 </td>
                 <td>
 
-                    <a asp-action="OrderDetailsIndex" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id">Complete Order</a> |
+                    <a asp-action="OrderDetailsIndex" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id">Complete Order</a>
                     <a asp-action="ConfirmOrderPicked" asp-route-id="@item.Id">Pick Order</a>
 
                 </td>
@@ -58,3 +58,25 @@
         }
     </tbody>
 </table>
+@*<section class="section-products">
+    <div>
+
+@foreach (var item in Model) {
+    <div class="row">
+        <div class="col-1-of-4">
+            <div class="products-box">
+
+                <h3 class="heading-tertiary u-margin-bottom-small">@Html.DisplayFor(modelItem => item.Name)<br>@Html.DisplayFor(modelItem => item.ProductCategory)</h3>
+                <p class="projects-box__text">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </p>
+                <p class="projects-box__text">
+                     @Html.DisplayFor(modelItem => item.Details)
+                </p>
+                <button class="btn" asp-action="Details" asp-route-id="@item.Id">Details</button>
+                <button class="btn" asp-action="AddToCart" asp-route-id="@item.Id">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+}
+</section>*@

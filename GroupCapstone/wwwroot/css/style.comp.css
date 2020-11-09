@@ -380,6 +380,30 @@ body {
 .logo {
   fill: orangered; }
 
+.orders-box {
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)), url(../Assets/img/hero-1-medium.jpg);
+  font-size: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: transform .3s; }
+  @media only screen and (min-width: 37.5em) {
+    .orders-box {
+      padding: 2rem; } }
+  .orders-box__icon {
+    font-size: 6rem;
+    margin-bottom: .5rem;
+    display: inline-block;
+    background-image: linear-gradient(to right, #009aff, #005c99);
+    -webkit-background-clip: text;
+    color: transparent; }
+    @media only screen and (min-width: 37.5em) {
+      .orders-box__icon {
+        margin-bottom: 0; } }
+  .orders-box:hover {
+    transform: translateY(-1.5rem) scale(1.03); }
+
 .products-box {
   background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)), url(../Assets/img/hero-1-medium.jpg);
   font-size: 1rem;
@@ -435,6 +459,18 @@ body {
     transform: skewY(4deg); }
   @media only screen and (min-width: 37.5em) {
     .section-products {
+      padding: 10rem 0; } }
+
+.section-orders {
+  padding: 4rem 0;
+  background-image: linear-gradient(to right bottom, rgba(0, 154, 255, 0.8), rgba(153, 0, 92, 0.8));
+  background-size: cover;
+  transform: skewY(-4deg);
+  width: 100%; }
+  .section-orders > * {
+    transform: skewY(4deg); }
+  @media only screen and (min-width: 37.5em) {
+    .section-orders {
       padding: 10rem 0; } }
 
 .landing {

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 <partial name="_LoginPartial" class=""/>
-<a class="btn btn--cart" asp-area="" asp-controller="Customers" asp-action="Cart"><span id="cart_count">Cart line (@ViewData["CartCount"])</span> <span>$@ViewData["CartTotalCost"]</span></a>
+<a class="btn btn--cart" asp-area="" asp-controller="Customers" asp-action="Cart"><span id="cart_count">Cart(@ViewData["CartCount"])</span> <span>$@ViewData["CartTotalCost"]</span></a>
 
 <h1 class="heading-primary--main">Browse Our Products! </h1>
 
@@ -17,7 +17,7 @@
         <div class="col-1-of-4">
             <div class="products-box">
                 
-                <div class="products-box__image" src="@Html.DisplayFor(modelItem => item.ImageUrl)">
+                <div class="products-box__image" style="background-image:url(@Html.DisplayFor(modelItem => item.ImageUrl))">
                     IMG goes HERE
                 </div>
 
@@ -28,8 +28,8 @@
                 <p class="projects-box__text">
                      @Html.DisplayFor(modelItem => item.Details)
                 </p>
-                <button class="btn" asp-action="Details" asp-route-id="@item.Id">Details</button>
-                <button class="btn" asp-action="AddToCart" asp-route-id="@item.Id">Add To Cart</button>
+                <a class="btn" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn" asp-action="AddToCart" asp-route-id="@item.Id">Add To Cart</a>
             </div>
         </div>
     </div>
