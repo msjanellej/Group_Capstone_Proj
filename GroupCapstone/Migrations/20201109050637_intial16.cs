@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupCapstone.Migrations
 {
-    public partial class initial22 : Migration
+    public partial class intial16 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +54,7 @@ namespace GroupCapstone.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Details = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
                     ProductCategory = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true)
                 },
@@ -73,7 +73,7 @@ namespace GroupCapstone.Migrations
                     StreetAddress = table.Column<string>(nullable: true),
                     AddressCity = table.Column<string>(nullable: true),
                     AddressState = table.Column<string>(nullable: true),
-                    AddressZip = table.Column<int>(nullable: false),
+                    AddressZip = table.Column<string>(nullable: true),
                     StoreHours = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     Logo = table.Column<string>(nullable: true),
@@ -263,7 +263,7 @@ namespace GroupCapstone.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(nullable: false),
-                    TotalPrice = table.Column<int>(nullable: false),
+                    TotalPrice = table.Column<double>(nullable: false),
                     IsCompleted = table.Column<bool>(nullable: false),
                     IsPicked = table.Column<bool>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false)
@@ -287,7 +287,7 @@ namespace GroupCapstone.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Qty = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
                     ProductCategory = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
                     ProductId = table.Column<int>(nullable: false),
@@ -317,7 +317,7 @@ namespace GroupCapstone.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(nullable: false),
-                    Price = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(nullable: false)
                 },
@@ -376,9 +376,9 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "bbd49c5a-63e7-4671-adb0-abdcfee856b1", "8c902006-0dbd-4464-a493-9662b736469b", "Admin", "ADMIN" },
-                    { "d927a9cc-db29-436e-b149-8bcc006994f8", "c31e61a1-6edd-4834-be9d-d0579eb36852", "Employee", "EMPLOYEE" },
-                    { "65e094f2-b824-4129-8aaf-1c1b826b8b63", "47a353b5-cf9d-4b2b-8321-8411d183f013", "Customer", "CUSTOMER" }
+                    { "f0ce4a07-a5c6-4810-bd89-262e14b10d1a", "f6a5cf1f-4cfb-4bbd-8fdb-8d6950043089", "Admin", "ADMIN" },
+                    { "939ba267-9394-4650-ab5f-5ee745029f10", "d9d120bb-cd2b-4493-a7ab-0f4be3dbe91d", "Employee", "EMPLOYEE" },
+                    { "a0a86acf-3f16-4f98-a638-4c9f6e66f1e2", "fcc25889-40a4-47c1-9f60-fa7c873513ac", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -398,24 +398,29 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "Details", "ImageUrl", "Name", "Price", "ProductCategory" },
                 values: new object[,]
                 {
-                    { 1, "Wisconsin cheese from Mexico.", "", "Cheese", 2, "Dairy" },
-                    { 2, "Harvested by blind monks.", "", "Coffee", 20, "Dry goods" },
-                    { 3, "99% tofu the rest is a secrect.", "", "Vegan Sausages", 9, "Vegan" },
-                    { 4, "No horses were harmed in the making of this product.", "", "Dog food", 5, "Pets" },
-                    { 5, "Please do not drink this product", "", "Windex", 3, "Cleaners" }
+                    { 1, "Wisconsin cheese from Mexico.", "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg", "Cheese", 2.1000000000000001, "Dairy" },
+                    { 2, "Harvested by blind monks.", "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg", "Coffee", 20.190000000000001, "Dry goods" },
+                    { 3, "99% tofu the rest is a secrect.", "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg", "Vegan Sausages", 9.5, "Vegan" },
+                    { 4, "No horses were harmed in the making of this product.", "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png", "Dog food", 5.9900000000000002, "Pets" },
+                    { 5, "Please do not drink this product", "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg", "Windex", 3.5600000000000001, "Cleaners" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "StoreInfo",
+                columns: new[] { "Id", "AddressCity", "AddressState", "AddressZip", "CompanyVision", "Email", "Latitude", "Logo", "Longitude", "Name", "PhoneNumber", "StoreHours", "StreetAddress" },
+                values: new object[] { 1, "Milwaukee", "WI", "53203", "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.", "ICU@curbhoppers.com", 0.0, "", 0.0, "Curb Hoppers", "867-5309", "24/7", "313 N Plankinton Ave" });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "CustomerId", "Date", "IsCompleted", "IsPicked", "TotalPrice" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, 50 },
-                    { 3, 1, new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 120 },
-                    { 5, 1, new DateTime(2020, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 80 },
-                    { 2, 2, new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 20 },
-                    { 4, 2, new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 70 },
-                    { 6, 2, new DateTime(2020, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), true, true, 50 }
+                    { 1, 1, new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, 50.0 },
+                    { 3, 1, new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 120.0 },
+                    { 5, 1, new DateTime(2020, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 80.0 },
+                    { 2, 2, new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 20.0 },
+                    { 4, 2, new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 70.0 },
+                    { 6, 2, new DateTime(2020, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), true, true, 50.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -423,12 +428,12 @@ namespace GroupCapstone.Migrations
                 columns: new[] { "Id", "OrderId", "Price", "ProductId", "Quantity" },
                 values: new object[,]
                 {
-                    { 1, 1, 0, 2, 5 },
-                    { 2, 2, 0, 2, 1 },
-                    { 3, 2, 0, 3, 8 },
-                    { 4, 4, 0, 4, 18 },
-                    { 5, 4, 0, 5, 14 },
-                    { 6, 4, 0, 3, 2 }
+                    { 1, 1, 0.0, 2, 5 },
+                    { 2, 2, 0.0, 2, 1 },
+                    { 3, 2, 0.0, 3, 8 },
+                    { 4, 4, 0.0, 4, 18 },
+                    { 5, 4, 0.0, 5, 14 },
+                    { 6, 4, 0.0, 3, 2 }
                 });
 
             migrationBuilder.CreateIndex(

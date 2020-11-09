@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201108170304_initial2234")]
-    partial class initial2234
+    [Migration("20201109050637_intial16")]
+    partial class intial16
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -151,8 +151,8 @@ namespace GroupCapstone.Migrations
                     b.Property<bool>("IsPicked")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TotalPrice")
-                        .HasColumnType("int");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -168,7 +168,7 @@ namespace GroupCapstone.Migrations
                             Date = new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCompleted = false,
                             IsPicked = true,
-                            TotalPrice = 50
+                            TotalPrice = 50.0
                         },
                         new
                         {
@@ -177,7 +177,7 @@ namespace GroupCapstone.Migrations
                             Date = new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCompleted = false,
                             IsPicked = false,
-                            TotalPrice = 20
+                            TotalPrice = 20.0
                         },
                         new
                         {
@@ -186,7 +186,7 @@ namespace GroupCapstone.Migrations
                             Date = new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCompleted = false,
                             IsPicked = false,
-                            TotalPrice = 120
+                            TotalPrice = 120.0
                         },
                         new
                         {
@@ -195,7 +195,7 @@ namespace GroupCapstone.Migrations
                             Date = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCompleted = false,
                             IsPicked = false,
-                            TotalPrice = 70
+                            TotalPrice = 70.0
                         },
                         new
                         {
@@ -204,7 +204,7 @@ namespace GroupCapstone.Migrations
                             Date = new DateTime(2020, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCompleted = false,
                             IsPicked = false,
-                            TotalPrice = 80
+                            TotalPrice = 80.0
                         },
                         new
                         {
@@ -213,7 +213,7 @@ namespace GroupCapstone.Migrations
                             Date = new DateTime(2020, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCompleted = true,
                             IsPicked = true,
-                            TotalPrice = 50
+                            TotalPrice = 50.0
                         });
                 });
 
@@ -227,8 +227,8 @@ namespace GroupCapstone.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -249,7 +249,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 1,
                             OrderId = 1,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 2,
                             Quantity = 5
                         },
@@ -257,7 +257,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 2,
                             OrderId = 2,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 2,
                             Quantity = 1
                         },
@@ -265,7 +265,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 3,
                             OrderId = 2,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 3,
                             Quantity = 8
                         },
@@ -273,7 +273,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 4,
                             OrderId = 4,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 4,
                             Quantity = 18
                         },
@@ -281,7 +281,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 5,
                             OrderId = 4,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 5,
                             Quantity = 14
                         },
@@ -289,7 +289,7 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 6,
                             OrderId = 4,
-                            Price = 0,
+                            Price = 0.0,
                             ProductId = 3,
                             Quantity = 2
                         });
@@ -338,8 +338,8 @@ namespace GroupCapstone.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("ProductCategory")
                         .HasColumnType("nvarchar(max)");
@@ -353,45 +353,45 @@ namespace GroupCapstone.Migrations
                         {
                             Id = 1,
                             Details = "Wisconsin cheese from Mexico.",
-                            ImageUrl = "",
+                            ImageUrl = "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg",
                             Name = "Cheese",
-                            Price = 2,
+                            Price = 2.1000000000000001,
                             ProductCategory = "Dairy"
                         },
                         new
                         {
                             Id = 2,
                             Details = "Harvested by blind monks.",
-                            ImageUrl = "",
+                            ImageUrl = "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg",
                             Name = "Coffee",
-                            Price = 20,
+                            Price = 20.190000000000001,
                             ProductCategory = "Dry goods"
                         },
                         new
                         {
                             Id = 3,
                             Details = "99% tofu the rest is a secrect.",
-                            ImageUrl = "",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg",
                             Name = "Vegan Sausages",
-                            Price = 9,
+                            Price = 9.5,
                             ProductCategory = "Vegan"
                         },
                         new
                         {
                             Id = 4,
                             Details = "No horses were harmed in the making of this product.",
-                            ImageUrl = "",
+                            ImageUrl = "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png",
                             Name = "Dog food",
-                            Price = 5,
+                            Price = 5.9900000000000002,
                             ProductCategory = "Pets"
                         },
                         new
                         {
                             Id = 5,
                             Details = "Please do not drink this product",
-                            ImageUrl = "",
+                            ImageUrl = "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg",
                             Name = "Windex",
-                            Price = 3,
+                            Price = 3.5600000000000001,
                             ProductCategory = "Cleaners"
                         });
                 });
@@ -412,8 +412,8 @@ namespace GroupCapstone.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("ProductCategory")
                         .HasColumnType("nvarchar(max)");
@@ -446,8 +446,8 @@ namespace GroupCapstone.Migrations
                     b.Property<string>("AddressState")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AddressZip")
-                        .HasColumnType("int");
+                    b.Property<string>("AddressZip")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyVision")
                         .HasColumnType("nvarchar(max)");
@@ -479,6 +479,24 @@ namespace GroupCapstone.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("StoreInfo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressCity = "Milwaukee",
+                            AddressState = "WI",
+                            AddressZip = "53203",
+                            CompanyVision = "Our DNA is coded so that the customer comes first, well, right after all of our petty internal stuff.  Trust me, the customer is right up there in the top five…maybe ten, things we are focused on.",
+                            Email = "ICU@curbhoppers.com",
+                            Latitude = 0.0,
+                            Logo = "",
+                            Longitude = 0.0,
+                            Name = "Curb Hoppers",
+                            PhoneNumber = "867-5309",
+                            StoreHours = "24/7",
+                            StreetAddress = "313 N Plankinton Ave"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -510,22 +528,22 @@ namespace GroupCapstone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ec9c0d24-07da-427e-a173-0e6acf155810",
-                            ConcurrencyStamp = "ae6e5266-9293-4865-89b5-360301413dd6",
+                            Id = "f0ce4a07-a5c6-4810-bd89-262e14b10d1a",
+                            ConcurrencyStamp = "f6a5cf1f-4cfb-4bbd-8fdb-8d6950043089",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e1d6f037-fceb-4aa1-b3f0-e7ef4946750c",
-                            ConcurrencyStamp = "5d8eb159-0cfc-41ac-ac92-84b879ccc8b8",
+                            Id = "939ba267-9394-4650-ab5f-5ee745029f10",
+                            ConcurrencyStamp = "d9d120bb-cd2b-4493-a7ab-0f4be3dbe91d",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "809b7ad9-c0cd-4a55-b9e4-c9a55e1d732c",
-                            ConcurrencyStamp = "03b487c7-9b9a-4888-829d-ade3646d7eb0",
+                            Id = "a0a86acf-3f16-4f98-a638-4c9f6e66f1e2",
+                            ConcurrencyStamp = "fcc25889-40a4-47c1-9f60-fa7c873513ac",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

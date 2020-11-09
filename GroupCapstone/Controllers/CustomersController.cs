@@ -238,8 +238,12 @@ namespace GroupCapstone.Controllers
             var customers = _context.Customers;
             var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
+            if (GetCount(customer.Id) == null)
+            {
+                return RedirectToAction("Index");
+            }
             ViewData["CartCount"] = GetCount(customer.Id);
-            ViewData["CartTotalCost"] = GetTotalCost(customer.Id);
+            ViewData["CartTotalCost"] = Math.Round(GetTotalCost(customer.Id), 2); 
             ViewData["CustomerEmail"] = customer.Email;
             ViewData["CustomerId"] = customer.Id;
             return PartialView("CartSummary");
@@ -258,11 +262,11 @@ namespace GroupCapstone.Controllers
             // Return 0 if all entries are null
             return count ?? 0;
         }
-        public int GetTotalCost(int id)
+        public double GetTotalCost(int id)
         {
             var product = _context.Products;
             // Get the count of each item in the cart and sum them up
-            int? total = _context.ShoppingCarts.Where(s => s.CustomerId == id).Select(x=>x.Qty * x.Price).Sum();
+            double? total = _context.ShoppingCarts.Where(s => s.CustomerId == id).Select(x=>x.Qty * x.Price).Sum();
             //@(((decimal)@ViewData["CartTotalCost"].ToString("C2"))
 
 
@@ -352,7 +356,7 @@ namespace GroupCapstone.Controllers
             // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
             var options = new ChargeCreateOptions
             {
-                Amount = (int)totalCost,
+                Amount = (long)totalCost*100,
                 Currency = "usd",
                 Source = "tok_visa",
                 Description = "Order from app. Custom text could be brought in here",

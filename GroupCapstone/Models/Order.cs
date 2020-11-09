@@ -15,8 +15,10 @@ namespace GroupCapstone.Models
         [Display(Name ="Order Date")]
         public DateTime Date {get; set;}
 
+
         [Display (Name = "Total Price")]
-        public int TotalPrice { get; set; }
+        [DisplayFormat(DataFormatString = "{0:c2}", ApplyFormatInEditMode = true)]
+        public double TotalPrice { get; set; }
 
         [Display(Name = "Completed Status")]
 

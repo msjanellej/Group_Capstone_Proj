@@ -13,8 +13,8 @@ namespace GroupCapstone.Models
         public int Id { get; set; }
 
         public int Quantity { get; set; }
-
-        public int Price { get; set; }
+        [DisplayFormat(DataFormatString = "{0:c2}", ApplyFormatInEditMode = true)]
+        public double Price { get; set; }
 
 
         [ForeignKey("Product")]

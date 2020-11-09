@@ -34,11 +34,11 @@ namespace GroupCapstone.Data
 				 );
 			builder.Entity<Product>()
 			  .HasData(
-					new Product { Id = 1, Name = "Cheese", Details = "Wisconsin cheese from Mexico.", Price = 210, ProductCategory = "Dairy", ImageUrl = "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg" },
-					new Product { Id = 2, Name = "Coffee", Details = "Harvested by blind monks.", Price = 2019, ProductCategory = "Dry goods", ImageUrl = "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg" },
-					new Product { Id = 3, Name = "Vegan Sausages", Details = "99% tofu the rest is a secrect.", Price = 950, ProductCategory = "Vegan", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg" },
-					new Product { Id = 4, Name = "Dog food", Details = "No horses were harmed in the making of this product.", Price = 599, ProductCategory = "Pets", ImageUrl = "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png" },
-					new Product { Id = 5, Name = "Windex", Details = "Please do not drink this product", Price = 356, ProductCategory = "Cleaners", ImageUrl = "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg" }
+					new Product { Id = 1, Name = "Cheese", Details = "Wisconsin cheese from Mexico.", Price = 2.10, ProductCategory = "Dairy", ImageUrl = "https://lovingitvegan.com/wp-content/uploads/2018/02/Cashew-Cheese-11.jpg" },
+					new Product { Id = 2, Name = "Coffee", Details = "Harvested by blind monks.", Price = 20.19, ProductCategory = "Dry goods", ImageUrl = "https://www.qsi-q3.com/wp-content/uploads/sites/52/2017/02/Teaser_05.jpg" },
+					new Product { Id = 3, Name = "Vegan Sausages", Details = "99% tofu the rest is a secrect.", Price = 9.50, ProductCategory = "Vegan", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/56/Smokey_tofu_sausages_%283084642875%29.jpg" },
+					new Product { Id = 4, Name = "Dog food", Details = "No horses were harmed in the making of this product.", Price = 5.99, ProductCategory = "Pets", ImageUrl = "https://www.petflow.com/images/default/products/maximal/42303-1556549859.png" },
+					new Product { Id = 5, Name = "Windex", Details = "Please do not drink this product", Price = 3.56, ProductCategory = "Cleaners", ImageUrl = "https://www.cvs.com/bizcontent/merchandising/productimages/large/1980020133.jpg" }
 				 );
 			builder.Entity<Order>()
 			  .HasData(
