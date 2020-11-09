@@ -7,35 +7,40 @@
 
 <h1 class="heading-primary--main">@ViewData["Title"]</h1>
 
-<div class="register__test">
+<div class="">
 	<div class="">
 		<form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form">
 			<h4 class="heading-primary--sub">Create a new account.</h4>
 			<hr />
 			<div asp-validation-summary="All" class="text-danger"></div>
 			<div class="form__group">
-				<label asp-for="Input.Email"></label>
+				<label asp-for="Input.Email" class="form_label"></label>
 				<input asp-for="Input.Email" class="form__input" />
 				<span asp-validation-for="Input.Email" class="text-danger"></span>
 			</div>
 			<div class="form__group">
-				<label asp-for="Input.Role"></label>
+				<label asp-for="Input.Role" class="form_label"></label>
 				<select asp-for="Input.Role" class="form__input" asp-items="@Model.Roles"></select>
 				<span asp-validation-for="Input.Role" class="text-danger"></span>
 			</div>
 			<div class="form__group">
-				<label asp-for="Input.Password"></label>
+				<label asp-for="Input.Password" class="form_label"></label>
 				<input asp-for="Input.Password" class="form__input" />
 				<span asp-validation-for="Input.Password" class="text-danger"></span>
 			</div>
 			<div class="form__group">
-				<label asp-for="Input.ConfirmPassword"></label>
+				<label asp-for="Input.ConfirmPassword" class="form_label"></label>
 				<input asp-for="Input.ConfirmPassword" class="form__input" />
 				<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 			</div>
-			<button type="submit" class="btn btn-primary">Register</button>
+			<div class="btn__content">
+				<button type="submit" class="btn btn--primary btn__content--right">Register</button>
+				<button class="btn btn--secondary btn__content--left" asp-area="" asp-controller="Home" asp-action="Index">Home</button>
+			</div>
+			
 		</form>
-		<a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+		
 	</div>
 
 </div>

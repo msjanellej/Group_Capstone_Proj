@@ -629,11 +629,7 @@ body {
   text-decoration: none;
   padding: 1.5rem 4rem;
   display: inline-block;
-  border-radius: 10rem;
   transition: all .2s;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
   font-size: 1.6rem;
   border: none;
   cursor: pointer; }
@@ -656,10 +652,31 @@ body {
   .btn--white::after {
     background-color: #fff; }
 
+.btn__content {
+  border-radius: 3px;
+  display: table;
+  transition: all .5s .2s; }
+  .btn__content--left, .btn__content--right {
+    width: 49%;
+    display: table-cell;
+    padding: 1rem 1rem; }
+
 .btn--primary {
   background-color: #007bcc;
-  color: #fff; }
+  color: #fff;
+  position: fixed;
+  bottom: 1rem;
+  right: 0; }
   .btn--primary::after {
+    background-color: #007bcc; }
+
+.btn--secondary {
+  background-color: #007bcc;
+  color: #fff;
+  position: fixed;
+  bottom: 1rem;
+  left: 0; }
+  .btn--secondary::after {
     background-color: #007bcc; }
 
 .btn::after {
