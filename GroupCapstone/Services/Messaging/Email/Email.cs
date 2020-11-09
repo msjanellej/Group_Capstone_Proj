@@ -19,7 +19,7 @@ namespace GroupCapstone.Services.Messaging.Email
             System.IO.File.Copy(sourceFile, destFile, true);
            
             string qrString = "https://groupcapstone.conveyor.cloud/Employees/ConfirmOrderComplete/" + order.Id.ToString();
-            QRCodeWriter.CreateQrCodeWithLogo(qrString, "logo.png", 150).StampToExistingPdfPage("qrcode.pdf", 200, 200, 1);
+            QRCodeWriter.CreateQrCodeWithLogo(qrString, "logo.png", 150).StampToExistingPdfPage("qrcode.pdf", 230, 300, 1);
             qrCode = QRCodeWriter.CreateQrCode(order.Id.ToString(), 500, QRCodeWriter.QrErrorCorrectionLevel.Medium).ToHtmlTag();
             return qrCode;
         }

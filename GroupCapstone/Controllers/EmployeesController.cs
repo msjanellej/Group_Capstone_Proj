@@ -80,7 +80,7 @@ namespace GroupCapstone.Controllers
             orderToComplete.IsCompleted = order.IsCompleted;
 
             _context.SaveChanges();
-            return View("Index", orderToComplete);
+            return RedirectToAction("Index");
         }
         public ActionResult ConfirmOrderPicked(int id)
         {
