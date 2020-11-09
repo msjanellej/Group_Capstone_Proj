@@ -287,7 +287,7 @@ namespace GroupCapstone.Controllers
             Models.Order order = new Models.Order();
             order.Date = DateTime.Now;
             order.CustomerId = (int)customerId;
-            order.TotalPrice = (int)totalCost;
+            order.TotalPrice = (double)totalCost;
             
             _context.Orders.Add(order);
             _context.SaveChanges();
