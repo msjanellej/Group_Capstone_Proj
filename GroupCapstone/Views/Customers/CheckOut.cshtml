@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "CheckOut";
-    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+
 }
 
 <style>
@@ -30,13 +30,13 @@
         background-color: #fefde5 !important;
     }
 </style>
-<h1>CheckOut</h1>
+<h1 class="heading-primary--main">CheckOut</h1>
 
 
 
-<form action="" method="post" id="payment-form">
+<form action="" method="post" id="payment-form" class="form">
     <div class="form-row">
-        <label for="card-element">
+        <label for="card-element" class="form__label">
             Credit or debit card
         </label>
         <div id="card-element">
