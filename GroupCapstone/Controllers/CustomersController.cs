@@ -341,9 +341,26 @@ namespace GroupCapstone.Controllers
 
             return View();
         }
+
         
+        public async Task<IActionResult> StoreInfo(int? id)
+        {
+            CartSummary();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var storeInfo = await _context.StoreInfo
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (storeInfo == null)
+            {
+                return NotFound();
+            }
+
+            return View(storeInfo);
+        }
         // POST: Customers/Create
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout()
