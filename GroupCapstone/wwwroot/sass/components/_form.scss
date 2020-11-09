@@ -5,6 +5,7 @@
     box-shadow: 0 1rem 4rem $color-grey-dark-3, 0 0 0 2rem $color-white;
 
 
+
     &__group:not(:last-child) {
         margin-bottom: .5rem;
     }
@@ -55,6 +56,10 @@
         opacity: 0;
         visibility: hidden;
         transform: translateY(-4rem);
+    }
+
+    &-btn{
+        border-radius: 0px 2rem;
     }
 }
 

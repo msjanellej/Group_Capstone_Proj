@@ -325,6 +325,8 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem); }
+  .form-btn {
+    border-radius: 0px 2rem; }
 
 .row {
   max-width: 114rem;
@@ -405,7 +407,7 @@ body {
     transform: translateY(-1.5rem) scale(1.03); }
 
 .products-box {
-  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)), url(../Assets/img/hero-1-medium.jpg);
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8));
   font-size: 1rem;
   padding: 2.5rem;
   text-align: center;
@@ -457,9 +459,6 @@ body {
   width: 100%; }
   .section-products > * {
     transform: skewY(4deg); }
-  @media only screen and (min-width: 37.5em) {
-    .section-products {
-      padding: 10rem 0; } }
 
 .section-orders {
   padding: 4rem 0;
@@ -498,4 +497,7 @@ body {
     margin-bottom: 0; }
 
 .section-register {
-  padding-left: 1rem; }
+  padding: 1rem; }
+
+.section-login {
+  padding: 1rem; }

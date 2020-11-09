@@ -107,7 +107,7 @@
     function initMap() {
           const location = { lat:  @Html.DisplayFor(model => model.Latitude), lng: @Html.DisplayFor(model => model.Longitude) };
             const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 12,
+            zoom: 14,
             center: location,
             });
             const marker = new google.maps.Marker({
