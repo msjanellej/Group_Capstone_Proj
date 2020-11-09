@@ -82,6 +82,29 @@
         }
     }
 
+    &--cart,
+    &--cart:link,
+    &--cart:visited {
+        background-color: $color-primary;
+        color: $color-white;
+        position: fixed;
+        font-size: 1rem;
+        top:0;
+        right: 0;
+        z-index: 1;
+        padding: .5rem;
+
+        &__stack {
+            position: relative;
+            top: 0;
+            right: 0;
+        }
+
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
     
     &::after {
         content: "";

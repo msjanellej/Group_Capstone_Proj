@@ -234,6 +234,22 @@ body {
   .btn--secondary::after {
     background-color: #007bcc; }
 
+.btn--cart, .btn--cart:link, .btn--cart:visited {
+  background-color: #007bcc;
+  color: #fff;
+  position: fixed;
+  font-size: 1rem;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: .5rem; }
+  .btn--cart__stack, .btn--cart:link__stack, .btn--cart:visited__stack {
+    position: relative;
+    top: 0;
+    right: 0; }
+  .btn--cart::after, .btn--cart:link::after, .btn--cart:visited::after {
+    background-color: #007bcc; }
+
 .btn::after {
   content: "";
   display: inline-block;
@@ -310,12 +326,62 @@ body {
     visibility: hidden;
     transform: translateY(-4rem); }
 
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+    @media only screen and (min-width: 37.5em) {
+      .row:not(:last-child) {
+        margin-bottom: 6rem; } }
+  @media only screen and (min-width: 37.5em) {
+    .row {
+      max-width: 50rem;
+      padding: 0 3rem; } }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+      @media only screen and (min-width: 37.5em) {
+        .row [class^="col-"]:not(:last-child) {
+          margin-right: 0;
+          margin-bottom: 6rem; } }
+    @media only screen and (min-width: 37.5em) {
+      .row [class^="col-"] {
+        width: 100% !important; } }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: fit-content; }
+  .row .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
+
+.logged-in-user {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block; }
+  .logged-in-user--white {
+    background-color: #fff;
+    color: #999; }
+    .logged-in-user--white::after {
+      background-color: #fff; }
+
 .logo {
   fill: orangered; }
 
 .products-box {
-  background-color: rgba(255, 255, 255, 0.8);
-  background-image: url(../Assets/img/hero-1-medium.jpg);
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)), url(../Assets/img/hero-1-medium.jpg);
   font-size: 1rem;
   padding: 2.5rem;
   text-align: center;
@@ -360,14 +426,13 @@ body {
   display: block; }
 
 .section-products {
-  padding: 20rem 0;
+  padding: 4rem 0;
   background-image: linear-gradient(to right bottom, rgba(0, 154, 255, 0.8), rgba(153, 0, 92, 0.8));
   background-size: cover;
-  transform: skewY(-7deg);
-  width: 100%;
-  margin-top: -10rem; }
+  transform: skewY(-4deg);
+  width: 100%; }
   .section-products > * {
-    transform: skewY(7deg); }
+    transform: skewY(4deg); }
   @media only screen and (min-width: 37.5em) {
     .section-products {
       padding: 10rem 0; } }

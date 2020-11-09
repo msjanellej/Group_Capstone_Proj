@@ -4,8 +4,10 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
+<partial name="_LoginPartial" class=""/>
+<a class="btn btn--cart" asp-area="" asp-controller="Customers" asp-action="Cart"><span id="cart_count">Cart line (@ViewData["CartCount"])</span> <span>$@ViewData["CartTotalCost"]</span></a>
 
-<h1>Index</h1>
+<h1 class="heading-primary--main">Browse Our Products! </h1>
 
 <section class="section-products">
     <div>

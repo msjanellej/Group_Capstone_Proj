@@ -1,16 +1,15 @@
 .section-products {
-  padding: 20rem 0;
+  padding: 4rem 0;
   background-image: linear-gradient(
       to right bottom,
       rgba($color-primary-light, 0.8),
       rgba($color-tertiary-dark, 0.8));
   background-size: cover;
-  transform: skewY(-7deg);
+  transform: skewY(-4deg);
   width: 100%;
-  margin-top: -10rem;
 
   & > * {
-      transform: skewY(7deg);
+      transform: skewY(4deg);
   }
 
   @include respond(tab-port) {
