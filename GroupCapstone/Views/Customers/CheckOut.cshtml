@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "CheckOut";
-    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+
 }
 
 <style>
@@ -30,13 +30,13 @@
         background-color: #fefde5 !important;
     }
 </style>
-<h1>CheckOut</h1>
+<h1 class="heading-primary--main">CheckOut</h1>
 
 
 
-<form action="" method="post" id="payment-form">
+<form action="" method="post" id="payment-form" class="form">
     <div class="form-row">
-        <label for="card-element">
+        <label for="card-element" class="form__label">
             Credit or debit card
         </label>
         <div id="card-element">
@@ -57,17 +57,7 @@
         // Create a Stripe client.
         /**/
         var stripe = Stripe("@APIKEYS.PublishableKey");
-        /**/
-
-        // Create an instance of Elements.
-        var elements = stripe.elements();
-
-        // Custom styling can be passed to options when creating an Element.
-        // (Note that this demo uses a wider set of styles than the guide below.)
-        var style = {
-            base: {
-                color: '#32325d',
-                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+     7        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
                 fontSmoothing: 'antialiased',
                 fontSize: '16px',
                 '::placeholder': {
