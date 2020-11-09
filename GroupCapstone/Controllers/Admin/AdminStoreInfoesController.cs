@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GroupCapstone.Data;
 using GroupCapstone.Models;
+using Geocoding;
+using Geocoding.Google;
 
 namespace GroupCapstone.Controllers
 {
@@ -60,6 +62,21 @@ namespace GroupCapstone.Controllers
             {
                 _context.Add(storeInfo);
                 await _context.SaveChangesAsync();
+
+                var addressString = string.Format("https://maps.googleapis.com/maps/api/geocode/json?address=" +storeInfo.StreetAddress + " " + storeInfo.AddressCity + " " + storeInfo.AddressState + " " + storeInfo.AddressZip+ "&key="+APIKEYS.GoogleAPI);
+              
+                
+                IGeocoder geocoder = new GoogleGeocoder() { ApiKey = APIKEYS.GoogleAPI };
+                IEnumerable<Address> addresses = await geocoder.GeocodeAsync(addressString);
+                storeInfo.Latitude = addresses.First().Coordinates.Latitude;
+                storeInfo.Longitude = addresses.First().Coordinates.Longitude;
+                _context.Update(storeInfo);
+                await _context.SaveChangesAsync();
+
+
+
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(storeInfo);
