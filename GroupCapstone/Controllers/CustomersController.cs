@@ -154,14 +154,14 @@ namespace GroupCapstone.Controllers
                 return NotFound();
             }
             CartSummary();
-            var shppingCart = await _context.ShoppingCarts.FindAsync(id);
-            if (shppingCart == null)
+            var shoppingCart = await _context.ShoppingCarts.FindAsync(id);
+            if (shoppingCart == null)
             {
                 return NotFound();
             }
             
             // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", shppingCart.IdentityUserId);
-            return View(shppingCart);
+            return View(shoppingCart);
         }
 
         // POST: Customers/Edit/5
@@ -169,18 +169,16 @@ namespace GroupCapstone.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ShoppingCart shoppingCart)
+        public async Task<IActionResult> Edit(ShoppingCart shoppingCart)
         {
-            if (id != shoppingCart.Id)
-            {
-                return NotFound();
-            }
+           
             CartSummary();
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
-                    _context.Update(shoppingCart);
+                    var cart = _context.ShoppingCarts.Where(s => s.CustomerId == shoppingCart.CustomerId && s.ProductId == shoppingCart.ProductId).FirstOrDefault();
+                       cart.Qty = shoppingCart.Qty;
+                    _context.Update(cart);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -194,11 +192,10 @@ namespace GroupCapstone.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
-
-           // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
-            return View(shoppingCart);
+                return RedirectToAction(nameof(Cart));
+           
+        
+            
         }
 
         // GET: Customers/Delete/5
@@ -243,7 +240,8 @@ namespace GroupCapstone.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["CartCount"] = GetCount(customer.Id);
-            ViewData["CartTotalCost"] = Math.Round(GetTotalCost(customer.Id), 2); 
+            ViewData["CartTotalCost"] = Math.Round(GetTotalCost(customer.Id), 2);
+            ViewData["CartTotalCostString"] = Math.Round(GetTotalCost(customer.Id), 2).ToString("0.00");
             ViewData["CustomerEmail"] = customer.Email;
             ViewData["CustomerId"] = customer.Id;
             return PartialView("CartSummary");

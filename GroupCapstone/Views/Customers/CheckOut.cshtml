@@ -58,6 +58,7 @@
         /**/
        
         var stripe = Stripe("@APIKEYS.PublishableKey");
+
         // Create an instance of Elements.
         var elements = stripe.elements();
 
@@ -67,6 +68,7 @@
             base: {
                 color: '#32325d',
                 fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+
                 fontSmoothing: 'antialiased',
                 fontSize: '16px',
                 '::placeholder': {
