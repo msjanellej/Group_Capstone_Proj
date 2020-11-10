@@ -121,9 +121,10 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: Customers/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id").ToList();
             return View();
         }
 
@@ -136,11 +137,13 @@ namespace GroupCapstone.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.IdentityUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            var save = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["IdentityUserId"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View(customer);
         }
 
