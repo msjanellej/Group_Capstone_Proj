@@ -87,8 +87,6 @@ namespace GroupCapstone.Controllers
             return View(applicationDbContext.ToList());
         }
 
-
-
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -123,9 +121,10 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: Customers/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id").ToList();
             return View();
         }
 
@@ -138,11 +137,13 @@ namespace GroupCapstone.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.IdentityUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            var save = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["IdentityUserId"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View(customer);
         }
 
@@ -235,7 +236,7 @@ namespace GroupCapstone.Controllers
             var customers = _context.Customers;
             var id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = customers.Where(c => c.IdentityUserId == id).SingleOrDefault();
-            if (GetCount(customer.Id) == null)
+            if (GetCount(customer.Id) == 0)
             {
                 return RedirectToAction("Index");
             }
@@ -331,15 +332,13 @@ namespace GroupCapstone.Controllers
                     customer.Email,
                     "Your order has been recieved",
                     emailBody, false);
-
         }
+
         public IActionResult Checkout(int? id)
         {
             CartSummary();
-
             return View();
         }
-
         
         public async Task<IActionResult> StoreInfo(int? id)
         {
@@ -358,6 +357,7 @@ namespace GroupCapstone.Controllers
 
             return View(storeInfo);
         }
+
         // POST: Customers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -372,13 +372,11 @@ namespace GroupCapstone.Controllers
             // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
             var options = new ChargeCreateOptions
             {
-                
                 Amount = save,
                 Currency = "usd",
                 Source = "tok_visa",
                 Description = "Order from app. Custom text could be brought in here",
                 ReceiptEmail = (string)Email 
-
             };
             var service = new ChargeService();
             var payment = service.Create(options);
@@ -390,10 +388,7 @@ namespace GroupCapstone.Controllers
             {
                 //place popup for error
             }
-           
-           
-            //await _context.SaveChangesAsync();
-
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
     }
