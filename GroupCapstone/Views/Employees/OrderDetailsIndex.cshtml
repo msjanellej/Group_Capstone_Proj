@@ -5,9 +5,8 @@
 }
 
 @*Buttons for Confirm Picked & Confirmed Order Complete should be on this page.*@
-<div class="comp-pick--container">
-    <a asp-action="ConfirmOrderComplete" class="">Complete Order</a>
-    <a asp-action="ConfirmOrderPicked" class="">Pick Order</a>
+<div style="position:relative;top:17%" class="comp-pick--container">
+
     <a asp-action="Index" class="">Back to Orders</a>
 </div>
 
@@ -27,11 +26,6 @@
             <td>@Html.DisplayFor(ModelItem => item.ProductVM.Id)</td>
             <td>@Html.DisplayFor(ModelItem => item.ProductVM.Name)</td>
             <td>@Html.DisplayFor(ModelItem => item.OrderDetailsVM.Quantity)</td>
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> 187ced14390fbb9b473946a84062d239070a9137
         </tr>
         
 }

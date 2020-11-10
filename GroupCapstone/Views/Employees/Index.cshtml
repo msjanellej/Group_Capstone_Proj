@@ -71,14 +71,15 @@
                     @item.Date.DayOfWeek @item.Date.Month/@item.Date.Day (@item.Date.Hour.ToString("00"):@item.Date.Minute.ToString("00")) |
 
                     @Html.DisplayFor(modelItem => item.TotalPrice) |
-                
-                    @Html.DisplayFor(modelItem => item.IsCompleted) |
+
+                                    <a asp-action="ConfirmOrderPicked" asp-route-id="@item.Id" class="">Pick Order</a> 
                 
                     @Html.DisplayFor(modelItem => item.IsPicked) |
                 
                
                 <a asp-action="OrderDetailsIndex" asp-route-id="@item.Id" class="orders-box__button">Details</a>
-                
+                <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id" class="">Complete Order</a>
+
             </div>
         </div>
     </div>

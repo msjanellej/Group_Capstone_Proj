@@ -173,7 +173,8 @@ a {
   text-decoration: none; }
 
 .minor-page {
-  margin-top: 10rem; }
+  position: relative;
+  top: 4rem; }
 
 .u-center-text {
   text-align: center !important; }
@@ -458,8 +459,6 @@ a {
   display: table;
   transition: all .5s .2s;
   width: -webkit-fill-available; }
-  .orders-content .check-box {
-    display: none; }
 
 .products-box {
   background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8));
