@@ -194,8 +194,8 @@ namespace GroupCapstone.Controllers
                 }
                 return RedirectToAction(nameof(Cart));
            
-           // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
-            return View(shoppingCart);
+        
+            
         }
 
         // GET: Customers/Delete/5
