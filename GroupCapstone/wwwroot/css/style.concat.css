@@ -902,6 +902,9 @@ body {
 .show {
   display: block; }
 
+.section-admin {
+  padding: 1rem; }
+
 .section-products {
   padding: 4rem 0;
   background-image: linear-gradient(to right bottom, rgba(0, 154, 255, 0.8), rgba(153, 0, 92, 0.8));
