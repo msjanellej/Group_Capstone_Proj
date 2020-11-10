@@ -5,7 +5,7 @@
 
 }
 <script src="https://js.stripe.com/v3/"></script>
-<h1 class="heading-primary--main minor-page">Cart</h1>
+<h1 class="heading-primary--main">Cart</h1>
 <table class="form">
     <thead>
         <tr>
@@ -22,12 +22,8 @@
             <th>
                 Total
             </th>
-            <th>
-                Category
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
+
+            
 
 
             <th></th>
@@ -44,18 +40,10 @@
             </td>
 
             <td>
-                $@item.Price.ToString("0.00")
-            
-            </td>
-            <td>
                 $@((item.Price * item.Qty).ToString("0.00"))
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductCategory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
+
+            
             
 
             <td>

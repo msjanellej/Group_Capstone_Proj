@@ -35,20 +35,21 @@
   &-list {
     width:100%;
     list-style:none;
-    position: absolute;
+    position: fixed;
     background: $color-primary-dark;
+    z-index: 1;
   
     & > .nav-listee {
       position:relative;
       float:left;
-      padding:.25em 1em;
-      margin:1.25em 1em;
+      padding:.25em 0em;
+      margin:.25em 0em;
   
       text-transform:uppercase;
       cursor:pointer;
       background:rgba(255, 255, 255, .8);
       text-align:center;
-      border-radius:.75em;
+      border-radius:.3em;
       transition-duration: .3s;
       transition-timing-function: ease-in-out;
       transition-property: background, color, padding, border-radius;
