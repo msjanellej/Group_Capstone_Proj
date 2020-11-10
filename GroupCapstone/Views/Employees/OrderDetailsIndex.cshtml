@@ -5,13 +5,14 @@
 }
 
 @*Buttons for Confirm Picked & Confirmed Order Complete should be on this page.*@
-<a asp-action="ConfirmOrderComplete" class="btn">Complete Order</a>
-<a asp-action="ConfirmOrderPicked" class="btn">Pick Order</a>
-<h1 class="heading-primary--main">OrderDetails</h1>
+<div class="comp-pick--container">
+    <a asp-action="ConfirmOrderComplete" class="">Complete Order</a>
+    <a asp-action="ConfirmOrderPicked" class="">Pick Order</a>
+    <a asp-action="Index" class="">Back to Orders</a>
+</div>
 
-<p>
-    <a asp-action="Index">Back to Orders</a>
-</p>
+<h1 class="heading-primary--main minor-page">OrderDetails</h1>
+
 <table class="form">
     <thead>
         <tr>

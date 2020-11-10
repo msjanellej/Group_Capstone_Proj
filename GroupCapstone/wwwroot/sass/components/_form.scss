@@ -3,7 +3,8 @@
     background-color: $color-grey-dark;
     border-radius: 1.5rem;
     box-shadow: 0 1rem 4rem $color-grey-dark-3, 0 0 0 2rem $color-white;
-
+    width: 100%;
+    text-align: center;
 
 
     &__group:not(:last-child) {

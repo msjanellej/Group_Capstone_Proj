@@ -27,7 +27,7 @@ body {
         -webkit-text-stroke-color: white;
         // -webkit-text-stroke-width: 1px;
     
-
+        
         @include respond(laptop) {
             letter-spacing: 3.5rem;
             font-size: 6rem;
@@ -104,4 +104,8 @@ a{
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
     text-decoration: none;
+}
+
+.minor-page{
+    margin-top: revert;
 }
