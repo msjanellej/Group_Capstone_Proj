@@ -5,7 +5,6 @@
 }
 
 @*Buttons for Confirm Picked & Confirmed Order Complete should be on this page.*@
-
 <h1>OrderDetailsIndex</h1>
 
 <p>
@@ -25,7 +24,8 @@
             <td>@Html.DisplayFor(ModelItem => item.OrderVM.Id)</td>
             <td>@Html.DisplayFor(ModelItem => item.ProductVM.Name)</td>
             <td>@Html.DisplayFor(ModelItem => item.OrderDetailsVM.Quantity)</td>
-          
+            <a asp-action="ConfirmOrderComplete" asp-route-id="@item.Id" class="btn">Complete Order</a>
+            <a asp-action="ConfirmOrderPicked" asp-route-id="@item.Id" class="btn">Pick Order</a>
         </tr>
 }
     </tbody>

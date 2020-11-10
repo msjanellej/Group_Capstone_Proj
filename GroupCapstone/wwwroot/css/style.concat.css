@@ -845,16 +845,17 @@ a {
   fill: orangered; }
 
 .orders-box {
-  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)), url(../Assets/img/hero-1-medium.jpg);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
   font-size: 1rem;
   padding: 2.5rem;
-  text-align: center;
+  text-align: left;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-  transition: transform .3s; }
-  @media only screen and (min-width: 37.5em) {
-    .orders-box {
-      padding: 2rem; } }
+  transition: transform .3s;
+  width: 49%;
+  display: table-cell;
+  padding: 1rem 2rem;
+  transform: translate(-1.7rem); }
   .orders-box__icon {
     font-size: 6rem;
     margin-bottom: .5rem;
@@ -867,6 +868,38 @@ a {
         margin-bottom: 0; } }
   .orders-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
+  .orders-box__button {
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .2s;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    display: table-cell;
+    padding: 1rem 1rem;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    float: right;
+    position: relative;
+    right: -2.5rem; }
+    .orders-box__button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+      .orders-box__button:hover::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0; }
+    .orders-box__button:active, .orders-box__button:focus {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.orders-content {
+  border-radius: 3px;
+  display: table;
+  transition: all .5s .2s;
+  width: -webkit-fill-available; }
+  .orders-content .check-box {
+    display: none; }
 
 .products-box {
   background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8));
@@ -932,7 +965,7 @@ a {
 
 .section-orders {
   padding: 4rem 0;
-  background-image: linear-gradient(to right bottom, rgba(0, 154, 255, 0.8), rgba(153, 0, 92, 0.8));
+  background-image: linear-gradient(to right bottom, rgba(92, 153, 0, 0.8), rgba(0, 92, 153, 0.8));
   background-size: cover;
   transform: skewY(-4deg);
   width: 100%; }

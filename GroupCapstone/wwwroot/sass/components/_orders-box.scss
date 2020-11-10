@@ -1,20 +1,20 @@
 .orders-box {
   // background-color: rgba($color-white, .8);
   background-image: linear-gradient(
-      to right bottom,
-      rgba($color-white, 0.5),
-      rgba($color-white, 0.8)),
-      url(../Assets/img/hero-1-medium.jpg);
+      to bottom,
+      rgba($color-white, 0.8),
+      rgba($color-white, 0.8));
   font-size: 1rem;
   padding: 2.5rem;
-  text-align: center;
+  text-align: left;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
   transition: transform .3s;
+  width: 49%;
+  display: table-cell;
+  padding: 1rem 2rem;
+  transform: translate(-1.7rem);
 
-  @include respond(tab-port) {
-      padding: 2rem;
-  }
 
   &__icon {
       font-size: 6rem;
@@ -31,5 +31,51 @@
 
   &:hover {
       transform: translateY(-1.5rem) scale(1.03);
+  }
+
+
+  &__button {
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .2s;
+
+    border: none;
+    cursor: pointer;
+    width: auto;
+    display: table-cell;
+    padding: 1rem 1rem;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    float: right;
+    position: relative;
+    right: -2.5rem;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    &:active,
+    &:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+  }
+}
+
+.orders-content {
+  border-radius: 3px;
+  display: table;
+  transition: all .5s .2s;
+  width: -webkit-fill-available;
+
+  & .check-box {
+    display: none;
   }
 }

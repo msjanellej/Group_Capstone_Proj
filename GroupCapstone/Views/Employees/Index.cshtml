@@ -6,10 +6,10 @@
 
 @*Do not need Order Picked Or Order Confirmed Links here. Check boxes are enough.*@ 
 <partial name="_LoginPartial" class=""/>
-<h1 class="heading-primary--main">Index</h1>
+<h1 class="heading-primary--main">Orders</h1>
 
 
-<table class="">
+@* <table class="">
     <thead>
         <tr>
             <th>
@@ -59,26 +59,29 @@
             </tr>
         }
     </tbody>
-</table>
-@*<section class="section-products">
+</table> *@
+<section class="section-orders">
     <div>
 
 @foreach (var item in Model) {
-    <div class="row">
-        <div class="col-1-of-4">
-            <div class="products-box">
+    <div class="">
+        <div class="orders-content">
+            <div class="orders-box">
+                    Order # @Html.DisplayFor(modelItem => item.Id) |
 
-                <h3 class="heading-tertiary u-margin-bottom-small">@Html.DisplayFor(modelItem => item.Name)<br>@Html.DisplayFor(modelItem => item.ProductCategory)</h3>
-                <p class="projects-box__text">
-                    @Html.DisplayFor(modelItem => item.Price)
-                </p>
-                <p class="projects-box__text">
-                     @Html.DisplayFor(modelItem => item.Details)
-                </p>
-                <button class="btn" asp-action="Details" asp-route-id="@item.Id">Details</button>
-                <button class="btn" asp-action="AddToCart" asp-route-id="@item.Id">Add To Cart</button>
+                    @item.Date.DayOfWeek @item.Date.Month/@item.Date.Day (@item.Date.Hour.ToString("00"):@item.Date.Minute.ToString("00")) |
+
+                    @Html.DisplayFor(modelItem => item.TotalPrice) |
+                
+                    @Html.DisplayFor(modelItem => item.IsCompleted) |
+                
+                    @Html.DisplayFor(modelItem => item.IsPicked) |
+                
+               
+                <a asp-action="OrderDetailsIndex" asp-route-id="@item.Id" class="orders-box__button">Details</a>
+                
             </div>
         </div>
     </div>
 }
-</section>*@
+</section>
