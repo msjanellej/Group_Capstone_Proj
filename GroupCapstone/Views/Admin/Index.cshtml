@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="heading-primary--main minor-page">Index</h1>
+<h1 class="heading-primary--main" style="position: relative; top: 4rem;">Index</h1>
 <div class="section-admin form">
     <input type="button" value="Customers" onclick="@("window.location.href='" + @Url.Action("index", "AdminCustomers") + "'");" />
     <input type="button" value="Employees" onclick="@("window.location.href='" + @Url.Action("index", "AdminEmployees") + "'");" />
