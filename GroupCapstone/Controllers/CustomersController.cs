@@ -340,16 +340,13 @@ namespace GroupCapstone.Controllers
             return View();
         }
         
-        public async Task<IActionResult> StoreInfo(int? id)
+        public async Task<IActionResult> StoreInfo()
         {
             CartSummary();
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
 
             var storeInfo = await _context.StoreInfo
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == 1);
             if (storeInfo == null)
             {
                 return NotFound();
