@@ -4,10 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="heading-primary--main">Index</h1>
+<div class="section-admin form">
+    <input type="button" value="Customers" onclick="@("window.location.href='" + @Url.Action("index", "AdminCustomers") + "'");" />
+    <input type="button" value="Employees" onclick="@("window.location.href='" + @Url.Action("index", "AdminEmployees") + "'");" />
+    <input type="button" value="Products" onclick="@("window.location.href='" + @Url.Action("index", "AdminProducts") + "'");" />
+    <input type="button" value="StoreInfo" onclick="@("window.location.href='" + @Url.Action("index", "AdminStoreInfoes") + "'");" />
 
-<input type="button" value="Customers" onclick="@("window.location.href='" + @Url.Action("index", "AdminCustomers") + "'");" />
-<input type="button" value="Employees" onclick="@("window.location.href='" + @Url.Action("index", "AdminEmployees") + "'");" />
-<input type="button" value="Products" onclick="@("window.location.href='" + @Url.Action("index", "AdminProducts") + "'");" />
-<input type="button" value="StoreInfo" onclick="@("window.location.href='" + @Url.Action("index", "AdminStoreInfoes") + "'");" />
+</div>
 

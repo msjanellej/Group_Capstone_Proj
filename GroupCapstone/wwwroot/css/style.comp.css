@@ -332,10 +332,10 @@ body {
   max-width: 114rem;
   margin: 0 auto; }
   .row:not(:last-child) {
-    margin-bottom: 8rem; }
+    margin-bottom: 1rem; }
     @media only screen and (min-width: 37.5em) {
       .row:not(:last-child) {
-        margin-bottom: 6rem; } }
+        margin-bottom: 0.5rem; } }
   @media only screen and (min-width: 37.5em) {
     .row {
       max-width: 50rem;
@@ -351,7 +351,7 @@ body {
       @media only screen and (min-width: 37.5em) {
         .row [class^="col-"]:not(:last-child) {
           margin-right: 0;
-          margin-bottom: 6rem; } }
+          margin-bottom: 0.5rem; } }
     @media only screen and (min-width: 37.5em) {
       .row [class^="col-"] {
         width: 100% !important; } }
@@ -362,7 +362,7 @@ body {
   .row .col-2-of-3 {
     width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
   .row .col-1-of-4 {
-    width: fit-content; }
+    width: -webkit-fill-available; }
   .row .col-2-of-4 {
     width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
   .row .col-3-of-4 {
@@ -409,7 +409,7 @@ body {
 .products-box {
   background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8));
   font-size: 1rem;
-  padding: 2.5rem;
+  padding: .5rem;
   text-align: center;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
@@ -429,6 +429,11 @@ body {
         margin-bottom: 0; } }
   .products-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
+  .products-box img {
+    object-fit: contain;
+    height: 12rem;
+    top: -2rem;
+    position: relative; }
 
 .nav-logo {
   text-decoration: none; }
@@ -450,6 +455,9 @@ body {
 
 .show {
   display: block; }
+
+.section-admin {
+  padding: 1rem; }
 
 .section-products {
   padding: 4rem 0;
