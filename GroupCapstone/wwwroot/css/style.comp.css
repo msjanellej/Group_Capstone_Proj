@@ -155,6 +155,22 @@ body {
   .paragraph:not(:last-child) {
     margin-bottom: 3rem; }
 
+a {
+  appearance: push-button;
+  user-select: none;
+  white-space: pre;
+  align-items: flex-start;
+  text-align: center;
+  cursor: pointer;
+  color: #005c99;
+  background-color: -internal-light-dark(#efefef, #3b3b3b);
+  box-sizing: border-box;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-color: -internal-light-dark(#767676, #858585);
+  border-image: initial;
+  text-decoration: none; }
+
 .u-center-text {
   text-align: center !important; }
 

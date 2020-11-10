@@ -88,3 +88,20 @@ body {
         margin-bottom: 3rem;
     }
 }
+a{
+    appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: pointer;
+    color: $color-primary-dark;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    // border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    text-decoration: none;
+}
