@@ -1,5 +1,7 @@
 # Curb Hoppers
-> Curb Hoppers provides an end to end shopping experience that allows small businesses to implement curb side pickup. This is a group project that was complete for DevCodeCamp. Curb Hoppers utilizes the following technologies: ASP.NET Core MVC, JavaScript, JQuery, Node.js, Express.js, SASS, and HTML/CSS.
+> Curb Hoppers provides an end to end shopping experience that allows small businesses to implement curb side pickup. This is a group project that was complete for DevCodeCamp. Curb Hoppers utilizes the following 
+
+>Technologies: ASP.NET Core MVC, JavaScript, JQuery, Node.js, Express.js, SASS, and HTML/CSS.
 <hr>
 
 
